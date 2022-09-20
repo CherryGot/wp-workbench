@@ -1,4 +1,7 @@
 {
   "name": "@cherrygot/kruti_admin",
   "private": true,
+  "devDependencies": {
+    "auto-changelog": "^2.4.0"
+  }
 }
