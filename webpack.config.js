@@ -1,13 +1,13 @@
-const path = require('path');
+const path = require( 'path' );
 
 module.exports = {
   mode: 'production',
   entry: {
-    'main': path.resolve(__dirname, 'src', 'main'),
+    'main': path.resolve( __dirname, 'src', 'main' ),
   },
   output: {
-    path: path.resolve(__dirname, 'assets', 'compiled'),
-    filename: '[name].js'
+    path: path.resolve( __dirname, 'assets', 'compiled' ),
+    filename: '[name].js',
   },
   module: {
     rules: [
@@ -21,13 +21,13 @@ module.exports = {
               [
                 '@babel/preset-env',
                 {
-                  'targets': 'since 2016'
-                }
-              ]
-            ]
-          }
-        }
-      }
-    ]
-  }
+                  'targets': 'since 2016',
+                },
+              ],
+            ],
+          },
+        },
+      },
+    ],
+  },
 };
