@@ -1,0 +1,13 @@
+{
+  "extends": ["@wordpress/stylelint-config/scss"],
+  "rules": {
+    "indentation": 2,
+    "function-parentheses-space-inside": "always",
+    "value-keyword-case": [
+      "lower",
+      {
+        "ignoreProperties": ["/\"[^'\"]+\"/"]
+      }
+    ]
+  }
+}
