@@ -7,10 +7,13 @@
     "auto-changelog": "^2.4.0",
     "babel-loader": "^8.2.2",
     "core-js": "^3.17.3",
+    "eslint": ">=5.16.0",
+    "eslint-config-google": "^0.14.0",
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0"
   },
   "scripts": {
+    "lint": "eslint src/ *.js",
     "watch:js": "webpack --mode=development --watch",
     "build:js": "webpack"
   }
