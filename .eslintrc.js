@@ -30,5 +30,9 @@ module.exports = {
       'error',
       'stroustrup',
     ],
+    'space-in-parens': [
+      'error',
+      'always',
+    ],
   },
 };
