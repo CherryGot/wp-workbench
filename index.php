@@ -6,7 +6,7 @@
  * @author            Chakrapani Gautam <contact@cherrygot.me>
  *
  * @wordpress-plugin
- * Plugin Name:       KRUTI. — A Next-Gen WordPress Admin Interface
+ * Plugin Name:       KRUTI. — WP Admin Theme
  * Plugin URI:        https://cherrygot.me/projects/kruti-admin/
  * Description:       Want something new and refreshing from WordPress but are stuck with using its default admin theme? Introducing KRUTI, the next-generation WordPress admin interface created to be a beautiful and user-friendly alternative to your standard WordPress editing experience. Available for free on WordPress.org, it's probably one of the most comprehensive and modern admin themes available to date.
  * Version:           0.0.1
