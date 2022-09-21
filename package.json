@@ -17,6 +17,7 @@
   },
   "scripts": {
     "lint": "stylelint src/**/*.scss && eslint src/ *.js",
+    "changelog": "auto-changelog --commit-limit false",
     "watch:sass": "sass --load-path=node_modules/ --watch src/:assets/compiled/ --no-source-map",
     "build:sass": "sass --load-path=node_modules/ src/style.scss:assets/compiled/style.css --no-source-map --style=compressed",
     "watch:js": "webpack --mode=development --watch",
