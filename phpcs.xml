@@ -26,6 +26,7 @@
     <exclude name="WordPress.Arrays.ArrayIndentation.MultiLineArrayItemNotAligned"/>
     <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
     <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
   </rule>
 
   <!-- No spaces after parenthesis and fix indentation during function calls -->
@@ -52,4 +53,7 @@
       <property name="indent" value="2" />
     </properties>
   </rule>
+
+  <!-- Stroustrup style of control structure for if-else try-catch -->
+  <rule ref="Drupal.ControlStructures.ControlSignature.NewlineAfterCloseBrace"></rule>
 </ruleset>
