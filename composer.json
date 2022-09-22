@@ -44,5 +44,6 @@
   },
   "scripts": {
     "lint": ["phpcs"]
+    "generate-readme": "php ./workflow/readme-generator.php"
   }
 }
