@@ -16,11 +16,14 @@
     "webpack-cli": "^4.8.0"
   },
   "scripts": {
-    "lint": "stylelint src/**/*.scss && eslint src/ *.js",
+    "lint:sass": "stylelint src/**/*.scss",
+    "lint:js": "eslint src/ *.js",
+    "lint": "yarn run lint:sass && yarn run lint:js",
     "changelog": "auto-changelog --commit-limit false --template workflow/changelog-template.hbs",
     "watch:sass": "sass --load-path=node_modules/ --watch src/:assets/compiled/ --no-source-map",
     "build:sass": "sass --load-path=node_modules/ src/style.scss:assets/compiled/style.css --no-source-map --style=compressed",
     "watch:js": "webpack --mode=development --watch",
-    "build:js": "webpack"
+    "build:js": "webpack",
+    "build": "yarn run build:sass && yarn run build:js"
   }
 }
