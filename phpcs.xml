@@ -4,6 +4,7 @@
 
   <!-- Scan all files in directory -->
   <file>src/</file>
+  <file>workflow/</file>
   <file>./index.php</file>
 
   <!-- Scan only PHP files -->
