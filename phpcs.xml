@@ -27,6 +27,7 @@
     <exclude name="WordPress.Arrays.ArrayIndentation.MultiLineArrayItemNotAligned"/>
     <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
     <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+    <exclude name="Squiz.Operators.IncrementDecrementUsage"/>
     <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
   </rule>
 
