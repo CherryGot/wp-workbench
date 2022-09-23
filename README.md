@@ -6,7 +6,7 @@ Donate link: https://cherrygot.me/buy-me-coffee/
 Tags: wp-admin, admin, wordpress admin, dashboard, admin theme, theme, wordpress admin theme
 Tested up to: 6.0.2
 Requires at least: 6.0
-Stable tag: 0.0.1
+Stable tag: 0.0.3
 Requires PHP: 8.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
