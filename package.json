@@ -27,5 +27,9 @@
     "watch:js": "webpack --mode=development --watch",
     "build:js": "webpack",
     "build": "yarn run build:sass && yarn run build:js"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-sans": "^4.5.12",
+    "bootstrap-icons": "^1.9.1"
   }
 }

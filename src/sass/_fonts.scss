@@ -1,0 +1,32 @@
+/* stylelint-disable at-rule-empty-line-before */
+
+@use "@fontsource/ibm-plex-sans/scss/mixins" as IBMPlexSans;
+
+$bootstrap-icons-font-dir: "../../node_modules/boostrap-icons/font/fonts";
+@import "bootstrap-icons/font/bootstrap-icons";
+
+@include IBMPlexSans.fontFace(
+  $fontDir: "../../node_modules/@fontsource/ibm-plex-sans/files",
+  $weight: 300
+);
+
+@include IBMPlexSans.fontFace(
+  $fontDir: "../../node_modules/@fontsource/ibm-plex-sans/files",
+  $weight: 400
+);
+
+@include IBMPlexSans.fontFace(
+  $fontDir: "../../node_modules/@fontsource/ibm-plex-sans/files",
+  $weight: 400,
+  $style: italic
+);
+
+@include IBMPlexSans.fontFace(
+  $fontDir: "../../node_modules/@fontsource/ibm-plex-sans/files",
+  $weight: 500
+);
+
+@include IBMPlexSans.fontFace(
+  $fontDir: "../../node_modules/@fontsource/ibm-plex-sans/files",
+  $weight: 700
+);
