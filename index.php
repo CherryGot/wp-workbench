@@ -23,3 +23,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
   die( 'Not today my friend, not today. Get back to what you were doing!' );
 }
+
+if ( ! defined( 'KRUTI_ADMIN_ASSETS_URL' ) ) {
+  define( 'KRUTI_ADMIN_ASSETS_URL', plugins_url( '/kruti-admin/assets', __FILE__ ) );
+}
+
+include_once 'src/plugin.php';
