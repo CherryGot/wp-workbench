@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'KRUTI_ADMIN_ASSETS_URL' ) ) {
-  define( 'KRUTI_ADMIN_ASSETS_URL', plugins_url( '/kruti-admin/assets', __FILE__ ) );
+  define( 'KRUTI_ADMIN_ASSETS_URL', plugins_url( '/assets', __FILE__ ) );
 }
 
 include_once 'src/plugin.php';
