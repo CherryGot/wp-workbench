@@ -1,0 +1,111 @@
+/* stylelint-disable no-descending-specificity */
+
+@use "sass:map";
+
+@import "../common/sass/mixins/layout";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+
+body {
+  @include media-breakpoint-down( lg ) {
+    overflow-x: hidden;
+  }
+
+  /**
+   * This `model-open` class is added when some popup covers the entire screen, like that popup in media.php page, or
+   * the popup that shows up when you check updated version details of a plugin.
+   */
+  &.modal-open {
+    overflow: hidden;
+
+    &.mobile #wpwrap {
+      overflow: hidden;
+      position: fixed;
+      height: 100%;
+    }
+  }
+}
+
+#wp {
+
+  /**
+   * This bad-boi wraps the entire admin area.
+   */
+  &wrap {
+    height: auto;
+    min-height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  /**
+   * This puppy here wraps everything except the admin menu on the side and the footer.
+   */
+  &content {
+    height: 100%;
+    margin-bottom: 4rem;
+    width: calc( 100% - #{ map.get( $sidebar-menu-width, "expanded" ) } );
+
+    @include media-breakpoint-down( lg ) {
+      position: relative;
+      width: 100%;
+    }
+  }
+
+  &body,
+  &adminbar {
+    padding: 0 0.75rem;
+  }
+
+  /**
+   * Footer section of the admin.
+   */
+  &footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    padding: 1.25rem 0.75rem;
+    margin-#{ $start-direction }: #{ map.get( $sidebar-menu-width, "expanded" ) };
+
+    @include media-breakpoint-down( lg ) {
+      margin-#{ $start-direction }: 0;
+    }
+  }
+}
+
+/**
+ * In case the sidebar is folded to collapsed state, update the layout accordingly.
+ */
+.folded #wp {
+
+  &content {
+    width: calc( 100% - #{ map.get( $sidebar-menu-width, "collapsed" ) } );
+
+    @include media-breakpoint-down( lg ) {
+      width: 100%;
+    }
+  }
+
+  &footer {
+    margin-#{ $start-direction }: #{ map.get( $sidebar-menu-width, "collapsed" ) };
+
+    @include media-breakpoint-down( lg ) {
+      margin-#{ $start-direction }: 0;
+    }
+  }
+}
+
