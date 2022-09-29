@@ -1,0 +1,13 @@
+/**
+ * Taken from: https://stackoverflow.com/a/54750277
+ */
+@function to-rgb ( $color ) {
+  @return red( $color ) + ", " + green( $color ) + ", " + blue( $color );
+}
+
+/**
+ * Slightly lighten a color
+ */
+@function tint( $color, $percentage ) {
+  @return mix( white, $color, $percentage );
+}
