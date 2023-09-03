@@ -1,10 +1,9 @@
-=== KRUTI. - A Next-Gen WordPress Admin Interface ===
+=== GenZ Admin - Supercharged WordPress Admin Interface ===
 
 Contributors: cherrygot
-Donate link: https://cherrygot.me/buy-me-coffee/
 Tags: wp-admin, admin, wordpress admin, dashboard, admin theme, theme, wordpress admin theme
-Tested up to: 6.0.2
-Requires at least: 6.0
+Tested up to: 6.3.1
+Requires at least: 6.3.0
 Stable tag: 0.0.3
 Requires PHP: 8.0
 License: GPLv3 or later
@@ -12,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
 == Description ==
 
-Want something new and refreshing from WordPress but are stuck with using its default admin theme? Introducing KRUTI, the next-generation WordPress admin interface created to be a beautiful and user-friendly alternative to your standard WordPress editing experience. Available for free on WordPress.org, it's probably one of the most comprehensive and modern admin themes available to date.
+Are you tired of using the same old admin theme in WordPress and looking for something new and refreshing? Look no further than Genz Admin! This supercharged, next-gen WordPress admin interface is designed to be modern, sleek, and eye-catching, delivering a beautiful and user-friendly alternative to your standard WordPress editing experience.
 
 == Changelog ==
 

@@ -1,20 +1,13 @@
 {
-  "name": "cherrygot/kruti-admin",
-  "description": "A Next-Gen WordPress Admin Interface.",
-  "type": "project",
-  "license": "GPLv3",
-  "homepage": "https://cherrygot.me/projects/kruti-admin/",
+  "name": "cherrygot/genz-admin",
+  "type": "wordpress-muplugin",
+  "minimum-stability": "stable",
   "authors": [
     {
       "name": "Chakrapani Gautam",
-      "email": "contact@cherrygot.me",
-      "homepage": "https://cherrygot.me/"
+      "email": "contact@cherrygot.me"
     }
   ],
-  "keywords": [
-    "composer", "wordpress", "wp", "wp-admin", "admin", "wordpress admin", "dashboard", "admin-theme", "theme"
-  ],
-  "minimum-stability": "stable",
   "require": {
     "php": ">=8.0"
   },
@@ -28,14 +21,11 @@
   },
   "repositories": [
     {
-      "type": "composer",
-      "url": "https://wpackagist.org/",
-      "only": ["wpackagist-plugin/*"]
     }
   ],
   "autoload": {
     "psr-4": {
-      "Kruti\\": "src/"
+      "CherryGot\\GenZPress\\MustUsePlugins\\Admin\\": "src/"
     }
   },
   "config": {
