@@ -1,14 +1,9 @@
 <?xml version="1.0"?>
-<ruleset name="CherryGot">
-  <description>CherryGot PHP Coding Standards</description>
-
+<ruleset>
   <!-- Scan all files in directory -->
   <file>src/</file>
   <file>workflow/</file>
   <file>./index.php</file>
-
-  <!-- Scan only PHP files -->
-  <arg name="extensions" value="php"/>
 
   <!-- Show colors in console -->
   <arg value="-colors"/>
@@ -17,45 +12,5 @@
   <arg value="ns"/>
 
   <!-- Use WordPress standards as a base -->
-  <rule ref="WordPress">
-    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
-    <exclude name="WordPress.PHP.DisallowShortTernary.Found"/>
-    <exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
-    <exclude name="WordPress.PHP.IniSet.display_errors_Blacklisted"/>
-    <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
-    <exclude name="WordPress.Arrays.ArrayIndentation.ItemNotAligned"/>
-    <exclude name="WordPress.Arrays.ArrayIndentation.MultiLineArrayItemNotAligned"/>
-    <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
-    <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
-    <exclude name="Squiz.Operators.IncrementDecrementUsage"/>
-    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
-  </rule>
-
-  <!-- No spaces after parenthesis and fix indentation during function calls -->
-  <rule ref="PEAR.Functions.FunctionCallSignature">
-    <properties>
-      <property name="requiredSpacesAfterOpen" value="1"/>
-      <property name="requiredSpacesBeforeClose" value="1"/>
-      <property name="indent" value="2"/>
-    </properties>
-  </rule>
-
-  <!-- Require indentation of 2 and disable tabIndent -->
-  <rule ref="Generic.WhiteSpace.ScopeIndent">
-    <properties>
-      <property name="indent" value="2"/>
-      <property name="tabIndent" value="false"/>
-    </properties>
-  </rule>
-  <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
-
-  <!-- Make sure that items in an array are correctly indented -->
-  <rule ref="Generic.Arrays.ArrayIndent">
-    <properties>
-      <property name="indent" value="2" />
-    </properties>
-  </rule>
-
-  <!-- Stroustrup style of control structure for if-else try-catch -->
-  <rule ref="Drupal.ControlStructures.ControlSignature.NewlineAfterCloseBrace"></rule>
+  <rule ref="CherryGot"/>
 </ruleset>
