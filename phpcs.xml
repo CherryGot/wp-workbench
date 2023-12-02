@@ -1,9 +1,11 @@
 <?xml version="1.0"?>
 <ruleset>
   <!-- Scan all files in directory -->
-  <file>src/</file>
+  <file>packages/</file>
   <file>workflow/</file>
-  <file>./index.php</file>
+
+  <!-- Exclude the directories we know we don't want to check -->
+  <exclude-pattern>/packages/*/(vendor|docs|help)/*</exclude-pattern>
 
   <!-- Show colors in console -->
   <arg value="-colors"/>
