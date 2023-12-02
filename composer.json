@@ -1,0 +1,20 @@
+{
+  "name": "cherrygot/genz_admin-gutenberg",
+  "type": "wordpress-plugin",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Chakrapani Gautam",
+      "email": "contact@cherrygot.me",
+      "homepage": "https://cherrygot.me"
+    }
+  ],
+  "require": {
+    "php": ">=8.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "GenZ\\Admin\\gutenberg\\": "src/"
+    }
+  }
+}
