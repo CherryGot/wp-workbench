@@ -1,11 +1,11 @@
 {
-  "name": "cherrygot/genz-admin",
-  "type": "wordpress-muplugin",
-  "minimum-stability": "stable",
+  "name": "cherrygot/genz_admin",
+  "type": "project",
   "authors": [
     {
       "name": "Chakrapani Gautam",
-      "email": "contact@cherrygot.me"
+      "email": "contact@cherrygot.me",
+      "homepage": "https://cherrygot.me"
     }
   ],
   "repositories": [
@@ -15,22 +15,18 @@
     }
   ],
   "require": {
-    "php": ">=8.0"
+    "php": ">=8.1"
   },
   "require-dev": {
     "cherrygot/coding-standards": "^0.4",
     "phpunit/phpunit": "^9.5",
     "roave/security-advisories": "dev-latest"
   },
-  "autoload": {
-    "psr-4": {
-      "CherryGot\\GenZPress\\MustUsePlugins\\Admin\\": "src/"
-    }
-  },
   "scripts": {
     "lint": "phpcs --error-severity=1 --warning-severity=1",
     "test": "phpunit --colors=always",
     "generate-readme": "php ./workflow/readme-generator.php"
+    "build-autoload": "find packages/ -maxdepth 1 -type d -exec sh -c 'cd \"{}\" && [ -e composer.json ] && composer dump-autoload -o' \\;"
   },
   "config": {
     "allow-plugins": {
