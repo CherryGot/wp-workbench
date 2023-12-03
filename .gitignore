@@ -1,5 +1,6 @@
 .phpunit.result.cache
 
+dist/
 vendor/
 node_modules/
 packages/**/help/
