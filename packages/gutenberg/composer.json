@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "GenZ\\Admin\\gutenberg\\": "src/"
+      "GenZ\\Admin\\Gutenberg\\": "src/"
     }
   }
 }
