@@ -2,34 +2,20 @@
   "name": "@cherrygot/genz_admin",
   "private": true,
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.6",
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
     "@wordpress/stylelint-config": "^21.0.0",
-    "auto-changelog": "^2.4.0",
-    "babel-loader": "^8.2.2",
-    "core-js": "^3.17.3",
     "eslint": ">=5.16.0",
     "eslint-config-google": "^0.14.0",
+    "husky": "^8.0.3",
     "jest": "^29.0.3",
     "sass": "^1.41.1",
-    "stylelint": "^14.12.0",
-    "webpack": "^5.53.0",
-    "webpack-cli": "^4.8.0"
+    "stylelint": "^14.12.0"
   },
   "scripts": {
-    "lint:sass": "stylelint src/**/*.scss",
-    "lint:js": "eslint src/ *.js",
-    "lint": "yarn run lint:sass && yarn run lint:js",
-    "test": "jest",
-    "changelog": "auto-changelog --commit-limit false --template workflow/changelog-template.hbs",
-    "watch:sass": "sass --load-path=node_modules/ --watch src/:assets/compiled/ --no-source-map",
-    "build:sass": "sass --load-path=node_modules/ src/style.scss:assets/compiled/style.css --no-source-map --style=compressed",
-    "watch:js": "webpack --mode=development --watch",
-    "build:js": "webpack",
-    "build": "yarn run build:sass && yarn run build:js"
-  },
-  "dependencies": {
-    "@fontsource/ibm-plex-sans": "^4.5.12",
-    "bootstrap-icons": "^1.9.1"
+    "lint:sass": "stylelint",
+    "lint:js": "eslint",
+    "lint": "bunx lint:sass && bunx lint:js",
+    "test": "jest"
   }
 }
