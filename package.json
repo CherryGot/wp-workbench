@@ -1,5 +1,5 @@
 {
-  "name": "@cherrygot/genz-admin",
+  "name": "@cherrygot/genz_admin",
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.15.5",
