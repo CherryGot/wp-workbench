@@ -26,6 +26,9 @@ rsync -a --exclude-from=packages/${directory_name}/.zipignore --exclude=packages
 
 # Check if rsync was successful
 if [ $? -eq 0 ]; then
+  # Copy the license.
+  cp LICENSE /tmp/genz-admin/${directory_name}
+
   # Storing the project directory in a variable.
   pwd=$( pwd )
 
