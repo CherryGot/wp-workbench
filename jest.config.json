@@ -1,4 +1,0 @@
-{
-  "verbose": true,
-  "testRegex": ".*test\\.[jt]sx?$"
-}
