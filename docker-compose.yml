@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  database:
+    image: mariadb:10.10
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    volumes:
+      - ./volumes/database:/var/lib/mysql
+      - ./docker/database:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  wp_site:
+    build:
+      context: ./docker/wordpress
+    restart: unless-stopped
+    volumes:
+      - ./vendor:/var/www/vendor
+      - ./wordpress:/var/www/html
+      - ./volumes/apache:/var/log/apache2
+      - ./wp-config.php:/var/www/wp-config.php
+    depends_on:
+      - database
+    ports:
+      - 80:80
+
+  adminer:
+    image: adminer:4.8.1
+    depends_on:
+      - database
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - ./docker/adminer/theme.css:/var/www/html/adminer.css
+    environment:
+      ADMINER_DEFAULT_SERVER: database
+      ADMINER_DEFAULT_DB_DRIVER: mysql
+      # Adminer server to admit big backup files import
+      PHP_CLI_MEMORY_LIMIT: 512M
+      PHP_MAX_EXECUTION_TIME: 0
+      PHP_POST_MAX_SIZE: 512M
+      PHP_UPLOAD_MAX_FILESIZE: 512M

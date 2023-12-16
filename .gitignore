@@ -4,4 +4,6 @@ yarn.lock
 dist/
 help/
 vendor/
+volumes/
+/wordpress/
 node_modules/

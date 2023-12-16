@@ -20,7 +20,8 @@
   "require-dev": {
     "cherrygot/coding-standards": "^0.4",
     "phpunit/phpunit": "^9.5",
-    "roave/security-advisories": "dev-latest"
+    "roave/security-advisories": "dev-latest",
+    "johnpbloch/wordpress": "6.4"
   },
   "scripts": {
     "lint": "phpcs --error-severity=1 --warning-severity=1",
@@ -32,12 +33,16 @@
   },
   "config": {
     "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "johnpbloch/wordpress-core-installer": true
     }
   },
   "autoload-dev": {
     "psr-4": {
       "GenZ\\Admin\\Gutenberg\\Tests\\": "packages/gutenberg/tests/"
     }
+  },
+  "extra": {
+    "wordpress-install-dir": "wordpress"
   }
 }
