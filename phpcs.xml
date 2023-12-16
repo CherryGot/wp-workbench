@@ -3,6 +3,7 @@
   <!-- Scan all files in directory -->
   <file>packages/</file>
   <file>workflow/</file>
+  <file>wp-config.php</file>
 
   <!-- Exclude the directories we know we don't want to check -->
   <exclude-pattern>/packages/*/(vendor|docs|help)/*</exclude-pattern>
