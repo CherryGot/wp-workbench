@@ -1,7 +1,0 @@
-use_directory_urls: false
-site_dir: 'help'
-theme:
-  name: material
-plugins: []
-
-site_name: GenZ Admin Gutenberg Theme
