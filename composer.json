@@ -8,17 +8,14 @@
       "homepage": "https://cherrygot.me"
     }
   ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/CherryGot/Coding-Standards.git"
-    }
-  ],
   "require": {
     "php": ">=8.1"
   },
   "require-dev": {
-    "cherrygot/coding-standards": "^0.4",
+    "drupal/coder": "^8.3",
+    "wp-coding-standards/wpcs": "^3.0",
+    "squizlabs/php_codesniffer": "^3.8",
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
     "phpunit/phpunit": "^9.5",
     "roave/security-advisories": "dev-latest",
     "johnpbloch/wordpress": "6.4"

@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
-<ruleset>
+
+<ruleset name="CherryGot">
+  <description>CherryGot PHP Coding Standards</description>
+
   <!-- Scan all files in directory -->
   <file>packages/</file>
   <file>workflow/</file>
@@ -14,6 +17,91 @@
   <!-- Show sniff codes in all reports -->
   <arg value="ns"/>
 
+  <!-- Scan only PHP files -->
+  <arg name="extensions" value="php"/>
+
   <!-- Use WordPress standards as a base -->
-  <rule ref="CherryGot"/>
+  <rule ref="WordPress">
+    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
+    <exclude name="Universal.Operators.DisallowShortTernary.Found"/>
+    <exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
+    <exclude name="WordPress.PHP.IniSet.display_errors_Blacklisted"/>
+    <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+    <exclude name="WordPress.Arrays.ArrayIndentation.ItemNotAligned"/>
+    <exclude name="WordPress.Arrays.ArrayIndentation.MultiLineArrayItemNotAligned"/>
+    <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+    <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+    <exclude name="Squiz.Operators.IncrementDecrementUsage"/>
+    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
+    <exclude name="Universal.WhiteSpace.PrecisionAlignment.Found"/>
+    <exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent"/>
+    <exclude name="Squiz.PHP.EmbeddedPhp.ContentBeforeEnd"/>
+    <exclude name="Squiz.Commenting.VariableComment.MissingVar"/>
+    <exclude name="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+  </rule>
+
+  <!-- No spaces after parenthesis and fix indentation during function calls -->
+  <rule ref="PEAR.Functions.FunctionCallSignature">
+    <properties>
+      <property name="requiredSpacesAfterOpen" value="1"/>
+      <property name="requiredSpacesBeforeClose" value="1"/>
+      <property name="indent" value="2"/>
+    </properties>
+  </rule>
+
+  <!-- Require indentation of 2 and disable tabIndent -->
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="2"/>
+      <property name="tabIndent" value="false"/>
+    </properties>
+  </rule>
+  <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
+
+  <!-- Make sure that items in an array are correctly indented -->
+  <rule ref="Generic.Arrays.ArrayIndent">
+    <properties>
+      <property name="indent" value="2"/>
+    </properties>
+  </rule>
+
+  <!-- Stroustrup style of control structure for if-else try-catch -->
+  <rule ref="Drupal.ControlStructures.ControlSignature.NewlineAfterCloseBrace"/>
+
+  <!-- Line Length -->
+  <rule ref= "Generic.Files.LineLength">
+    <properties>
+      <property name="lineLimit" value="100"/>
+      <property name="absoluteLineLimit" value="100"/>
+    </properties>
+  </rule>
+
+  <!-- Enforce strict type declaration -->
+  <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+    <exclude-pattern>*/tests/*</exclude-pattern>
+  </rule>
+  <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
+    <exclude-pattern>*/tests/*</exclude-pattern>
+  </rule>
+  <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint">
+    <exclude-pattern>*/tests/*</exclude-pattern>
+  </rule>
+  <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint">
+    <exclude-pattern>*/tests/*</exclude-pattern>
+  </rule>
+
+  <!-- Ensures 1 blank line before and after functions, except at the top and bottom. -->
+  <rule ref="Squiz.WhiteSpace.FunctionSpacing">
+    <properties>
+      <property name="spacing" value="1"/>
+    </properties>
+  </rule>
+
+  <!-- Ensures 1 blank line before and after the class body. -->
+  <rule ref="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces">
+    <properties>
+      <property name="linesCountAfterOpeningBrace" value="1"/>
+      <property name="linesCountBeforeClosingBrace" value="1"/>
+    </properties>
+  </rule>
 </ruleset>
