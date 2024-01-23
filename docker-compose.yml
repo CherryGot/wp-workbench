@@ -24,6 +24,8 @@ services:
       - ./wordpress:/var/www/html
       - ./volumes/apache:/var/log/apache2
       - ./wp-config.php:/var/www/wp-config.php
+      - ./packages:/var/www/html/wp-content/packages
+      - ./docker/wordpress/entrypoint.sh:/var/www/html/entrypoint.sh
       - ./docker/wordpress/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     depends_on:
       - database

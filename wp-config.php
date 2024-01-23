@@ -3,7 +3,7 @@
  * The wp-config file for the local WordPress setup. The values here are hard coded since it's just
  * meant to be used for development purposes only.
  *
- * @package cherrygot/genz_admin
+ * @package cherrygot/wp-workbench
  */
 
 declare ( strict_types = 1 );

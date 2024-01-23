@@ -5,7 +5,7 @@
  *
  * @see https://github.com/fumikito/wp-readme/
  *
- * @package cherrygot/genz-admin
+ * @package cherrygot/wp-workbench
  *
  * phpcs:disable WordPress.WP.AlternativeFunctions
  * phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped

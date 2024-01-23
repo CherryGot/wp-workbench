@@ -10,4 +10,4 @@ RUN pecl install "xdebug" \
 # Set proper ownership
 CMD chown -R :www-data /var/www/html
 
-ENTRYPOINT /usr/sbin/apache2ctl -D FOREGROUND
+ENTRYPOINT /var/www/html/entrypoint.sh; /usr/sbin/apache2ctl -D FOREGROUND
