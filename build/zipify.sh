@@ -19,33 +19,33 @@ if [ $? -ne 0 ]; then
 fi
 
 # Cleanup of tmp directory before using it.
-rm -rf /tmp/genz-admin/*
+rm -rf /tmp/wp-workbench/*
 
 # Run rsync to copy files to a temporary directory
-rsync -a --exclude-from=packages/${directory_name}/.zipignore --exclude=packages/${directory_name}/.zipignore --delete-excluded packages/${directory_name} /tmp/genz-admin
+rsync -a --exclude-from=packages/${directory_name}/.zipignore --exclude=packages/${directory_name}/.zipignore --delete-excluded packages/${directory_name} /tmp/wp-workbench
 
 # Check if rsync was successful
 if [ $? -eq 0 ]; then
   # Copy the license.
-  cp LICENSE /tmp/genz-admin/${directory_name}
+  cp LICENSE /tmp/wp-workbench/${directory_name}
 
   # Storing the project directory in a variable.
   pwd=$( pwd )
 
   # Preparing for zip the directory.
-  cd /tmp/genz-admin/
-  mv ${directory_name} genz_admin-${directory_name}
+  cd /tmp/wp-workbench/
+  mv ${directory_name} cg-${directory_name}
 
   # Create a zip archive with the same name as the directory
-  zip -r genz_admin-${directory_name} genz_admin-${directory_name}/.
+  zip -r cg-${directory_name} cg-${directory_name}/.
 
   # Move the zip file to the dist folder.
   cd $pwd
   mkdir -p dist
-  mv /tmp/genz-admin/genz_admin-${directory_name}.zip dist/genz_admin-${directory_name}-${version}.zip
+  mv /tmp/wp-workbench/cg-${directory_name}.zip dist/cg-${directory_name}-${version}.zip
 
   # Inform the user about the success
-  echo "Zip archive created: genz_admin-${directory_name}-${version}.zip"
+  echo "Zip archive created: cg-${directory_name}-${version}.zip"
 else
   # Inform the user about the failure
   echo "Failed to create the zip archive."
