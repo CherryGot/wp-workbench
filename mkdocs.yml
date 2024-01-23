@@ -39,4 +39,4 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences
 
-site_name: GenZ Admin Development Docs
+site_name: WP Workbench Development Docs

@@ -1,5 +1,5 @@
 {
-  "name": "cherrygot/genz_admin",
+  "name": "cherrygot/wp-workbench",
   "type": "project",
   "authors": [
     {
@@ -36,7 +36,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "GenZ\\Admin\\Gutenberg\\Tests\\": "packages/gutenberg/tests/"
+      "Workbench\\Tests\\GenZAdmin\\": "packages/gutenberg/tests/"
     }
   },
   "extra": {

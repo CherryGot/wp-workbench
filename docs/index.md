@@ -45,7 +45,7 @@ Okay, now that we've basic understanding of what tools should you be ready with,
 First, get your hands on the repo. Since you're reading this documentation, that probably means you already have the access to it. Download it to your local working directory like so,
 
 ``` sh
-$ git clone git@github.com:CherryGot/GenZAdmin.git
+$ git clone git@github.com:CherryGot/wp-workbench.git
 ```
 
 Once the repo has downloaded, install all the dependencies using the following commands.
