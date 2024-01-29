@@ -1,0 +1,5 @@
+dist/
+build/
+vendor/
+volumes/
+node_modules/

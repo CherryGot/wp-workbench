@@ -1,31 +1,6 @@
 module.exports = {
-  'env': {
-    'browser': true,
-    'es2021': true,
-  },
-  'extends': 'google',
-  'overrides': [],
-  'parserOptions': {
-    'ecmaVersion': 'latest',
-    'sourceType': 'module',
-  },
-  'rules': {
-    'object-curly-spacing': [
-      'error',
-      'always',
-    ],
-    'padded-blocks': [
-      'error',
-      {
-        'classes': 'always',
-      },
-    ],
-    'max-len': [
-      'error',
-      {
-        'code': 120,
-      },
-    ],
+  extends: [ 'plugin:@wordpress/eslint-plugin/recommended-with-formatting' ],
+  rules: {
     'brace-style': [
       'error',
       'stroustrup',
@@ -34,5 +9,12 @@ module.exports = {
       'error',
       'always',
     ],
+    'max-len': [
+      'error',
+      {
+        'code': 100,
+      }
+    ],
+    'indent': [ 'error', 2 ],
   },
-};
+}
