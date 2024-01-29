@@ -11,5 +11,6 @@
     ],
     "at-rule-empty-line-before": null,
     "max-line-length": 80
-  }
+  },
+  "ignoreFiles": [ "packages/wp-edit_post/**/*.scss" ]
 }
