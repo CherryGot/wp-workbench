@@ -64,6 +64,7 @@ class Article extends \WC_Product_Simple {
         $('#woocommerce-product-data .hide_if_simple').addClass(
           '<?php echo esc_attr( $hide ); ?>'
         );
+        $('#woocommerce-product-data #product-type').change();
       });
     </script>
     <?php

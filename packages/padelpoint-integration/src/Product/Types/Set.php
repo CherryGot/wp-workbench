@@ -64,6 +64,7 @@ class Set extends \WC_Product_Variable {
         $('#woocommerce-product-data .hide_if_variable').addClass(
           '<?php echo esc_attr( $hide ); ?>'
         );
+        $('#woocommerce-product-data #product-type').change();
       });
     </script>
     <?php
