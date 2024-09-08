@@ -1,0 +1,21 @@
+{
+  "name": "cherrygot/padelpoint-integration",
+  "type": "wordpress-plugin",
+  "minimum-stability": "stable",
+  "version": "0.0.0",
+  "authors": [
+    {
+      "name": "Chakrapani Gautam",
+      "email": "contact@cherrygot.me",
+      "homepage": "https://cherrygot.me"
+    }
+  ],
+  "require": {
+    "php": ">=8.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "PadelPoint\\": "src/"
+    }
+  }
+}
