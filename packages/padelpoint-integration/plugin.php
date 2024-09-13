@@ -33,3 +33,13 @@ $admin_footer_handler = function (): void {
   Types\Set::enable_variable_fields();
 };
 add_action( 'admin_footer', $admin_footer_handler );
+
+add_filter( 'acf/get_post_types', array( PadelPoint\Admin\ACF::class, 'enable_variations' ) );
+
+$callback = array( PadelPoint\Admin\ACF::class, 'add_fields_for_variations' );
+add_action( 'woocommerce_product_after_variable_attributes', $callback, 10, 3 );
+
+$callback = array( PadelPoint\Admin\ACF::class, 'save_fields_for_variations' );
+add_action( 'woocommerce_save_product_variation', $callback, 10, 2 );
+
+add_action( 'acf/input/admin_footer', array( PadelPoint\Admin\ACF::class, 'rebind_js_events' ) );
