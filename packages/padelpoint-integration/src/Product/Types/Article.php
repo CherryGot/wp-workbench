@@ -74,6 +74,7 @@ class Article extends \WC_Product_Simple {
    * Imports an articulo present in padelpoint API and populates necessary ACF fields.
    *
    * @param array<string,mixed> $articulo The raw article product from catalog.
+   * @return int The post id of the created/updated product.
    */
   public static function import( array $articulo ): void {
     if ( $articulo['CODIGO'] <= 0 ) {
@@ -126,7 +127,7 @@ class Article extends \WC_Product_Simple {
     }
 
     if ( $post_id <= 0 ) {
-      return;
+      return 0;
     }
 
     wp_set_object_terms( $post_id, $articulo['CODIGOS_CATWEB'], 'product_cat' );
@@ -147,6 +148,8 @@ class Article extends \WC_Product_Simple {
         \update_field( strtolower( $field ), $articulo[ $field ], $post_id );
       }
     }
+
+    return $post_id;
   }
 
 }
