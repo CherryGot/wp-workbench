@@ -44,3 +44,7 @@ $callback = array( PadelPoint\Admin\ACF::class, 'save_fields_for_variations' );
 add_action( 'woocommerce_save_product_variation', $callback, 10, 2 );
 
 add_action( 'acf/input/admin_footer', array( PadelPoint\Admin\ACF::class, 'rebind_js_events' ) );
+
+add_action( 'admin_menu', array( PadelPoint\Admin\Extensions::class, 'init' ) );
+
+add_action( 'admin_init', array( PadelPoint\Admin\Extensions::class, 'register_setting_fields' ) );
