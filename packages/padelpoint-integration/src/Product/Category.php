@@ -29,7 +29,6 @@ class Category {
 
     $data = array(
       'description' => $categoria['DESCRIPCION'],
-      'slug'        => \sanitize_title( $categoria['NOMBRE'] ),
       'name'        => $categoria['NOMBRE'],
     );
 
@@ -55,6 +54,7 @@ class Category {
       return $terms[0];
     }
 
+    $data['slug']        = \sanitize_title( $categoria['NOMBRE'] );
     $duplication_counter = 1;
     while ( ! empty( \term_exists( $data['slug'], 'product_cat' ) ) ) {
       $duplication_counter += 1;
