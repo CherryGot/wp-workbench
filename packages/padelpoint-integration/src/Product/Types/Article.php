@@ -76,12 +76,7 @@ class Article extends \WC_Product_Simple {
    * @param array<string,mixed> $articulo The raw article product from catalog.
    * @return int The post id of the created/updated product.
    */
-  public static function import( array $articulo ): void {
-    if ( $articulo['CODIGO'] <= 0 ) {
-      error_log( "Weird article with CODIGO set to 0: {$articulo['DESCRIPCION']}" );
-      return;
-    }
-
+  public static function import( array $articulo ): int {
     $post_id          = 0;
     $existing_product = \get_posts(
       array(
@@ -93,19 +88,23 @@ class Article extends \WC_Product_Simple {
       )
     );
 
+    $meta_input = array(
+      '_regular_price' => $articulo['PRECIO'],
+      '_price'         => $articulo['PRECIO'],
+      '_manage_stock'  => 'yes',
+      '_stock'         => $articulo['STOCK'],
+    );
+
     if ( $existing_product ) {
       // Actualizar el producto existente.
       $post_id = $existing_product[0];
-      wp_update_post(
+      \wp_update_post(
         array(
           'ID'         => $post_id,
           'post_title' => $articulo['DESCRIPCION'],
+          'meta_input' => $meta_input,
         )
       );
-      \update_post_meta( $post_id, '_regular_price', $articulo['PRECIO'] );
-      \update_post_meta( $post_id, '_price', $articulo['PRECIO'] );
-      \update_post_meta( $post_id, '_stock', $articulo['STOCK'] );
-      error_log( 'Producto actualizado: ' . $articulo['DESCRIPCION'] . ' (ID: ' . $post_id . ')' );
     }
     else {
       // Crear nuevo producto.
@@ -114,16 +113,10 @@ class Article extends \WC_Product_Simple {
           'post_title'  => $articulo['DESCRIPCION'],
           'post_type'   => 'product',
           'post_status' => 'publish',
-          'meta_input'  => array(
-            '_regular_price' => $articulo['PRECIO'],
-            '_price'         => $articulo['PRECIO'],
-            '_stock'         => $articulo['STOCK'],
-            '_sku'           => $articulo['CODIGO'],
-          ),
+          'meta_input'  => array_merge( $meta_input, array( '_sku' => $articulo['CODIGO'] ) ),
         )
       );
       \wp_set_object_terms( $post_id, static::SLUG, 'product_type' );
-      error_log( "Producto insertado: {$articulo['DESCRIPCION']} (ID: $post_id)" . PHP_EOL );
     }
 
     if ( $post_id <= 0 ) {
