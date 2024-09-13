@@ -39,6 +39,7 @@ class Category {
         'hide_empty' => false,
         'number'     => 1,
         'fields'     => 'ids',
+        'orderby'    => 'name',
         'meta_key'   => '_codigo', // Just following the _ pattern from rest of the codebase.
         'meta_value' => $categoria['CODIGO'],
       )
