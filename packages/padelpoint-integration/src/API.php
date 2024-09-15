@@ -60,4 +60,24 @@ class API {
     return $data;
   }
 
+  /**
+   * Send a request to order articles on PadelPoint.
+   *
+   * @param array<string,mixed> $order_data The data about order.
+   * @return array<string,mixed> The response from API.
+   */
+  public static function place_order( array $order_data ): array {
+    return static::make_request(
+      '/insertar_pedido.php',
+      array(
+        'method'  => 'POST',
+        'timeout' => 60,
+        'headers' => array(
+          'Content-Type' => 'application/json',
+        ),
+        'body'    => \wp_json_encode( $order_data ),
+      )
+    );
+  }
+
 }

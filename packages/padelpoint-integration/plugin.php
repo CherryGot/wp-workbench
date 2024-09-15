@@ -48,3 +48,5 @@ add_action( 'acf/input/admin_footer', array( PadelPoint\Admin\ACF::class, 'rebin
 add_action( 'admin_menu', array( PadelPoint\Admin\Extensions::class, 'init' ) );
 
 add_action( 'admin_init', array( PadelPoint\Admin\Extensions::class, 'register_setting_fields' ) );
+
+add_action( 'woocommerce_payment_complete', array( PadelPoint\Job::class, 'process_order' ) );
