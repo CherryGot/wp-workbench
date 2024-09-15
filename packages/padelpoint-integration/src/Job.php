@@ -82,6 +82,17 @@ class Job {
       );
     }
 
+    $country = $order->get_shipping_country();
+    $states  = \WC()->countries->get_states( $country );
+    if ( array_key_exists( $country, \WC()->countries->countries ) ) {
+      $country = \WC()->countries->countries[ $country ];
+    }
+
+    $state = $order->get_shipping_state();
+    if ( ! empty( $states ) && array_key_exists( $state, $states ) ) {
+      $state = $states[ $state ];
+    }
+
     $warehouse_order = array(
       'COMENTARIO_ENVIO' => $order_notes,
       'ID_PEDIDO'        => $order->get_id(),
@@ -90,7 +101,8 @@ class Job {
         'APELLIDOS'     => $order->get_shipping_last_name(),
         'DIRECCION'     => $address_lines,
         'POBLACION'     => $order->get_shipping_city(),
-        'PROVINCIA'     => $order->get_shipping_state(),
+        'PROVINCIA'     => $state,
+        'PAIS'          => $country,
         'CODIGO_POSTAL' => $order->get_shipping_postcode(),
         'TELEFONO'      => $order->get_billing_phone(), // No shipping phone apparantly.
       ),
