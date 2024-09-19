@@ -20,8 +20,8 @@ class API {
    * Prepare Basic Authentication hash from the user and password fetched from DB.
    */
   private static function get_auth_hash(): string {
-    $user = \get_option( 'padelpoint-login', '' );
-    $pswd = \get_option( 'padelpoint-password', '' );
+    $user = \get_option( Constants::SETTING_FIELD_LOGIN, '' );
+    $pswd = \get_option( Constants::SETTING_FIELD_PASSWORD, '' );
     return base64_encode( "$user:$pswd" );
   }
 

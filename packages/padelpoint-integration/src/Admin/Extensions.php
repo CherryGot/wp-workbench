@@ -9,6 +9,8 @@ declare ( strict_types = 1 );
 
 namespace PadelPoint\Admin;
 
+use PadelPoint\Constants;
+
 /**
  * Wraps functions to follow PSR4 standard.
  */
@@ -58,19 +60,19 @@ class Extensions {
    * Registering settings and fields to read values from user input.
    */
   public static function register_setting_fields(): void {
-    \register_setting( 'padelpoint-settings', 'padelpoint-login' );
-    \register_setting( 'padelpoint-settings', 'padelpoint-password' );
+    \register_setting( 'padelpoint-settings', Constants::SETTING_FIELD_LOGIN );
+    \register_setting( 'padelpoint-settings', Constants::SETTING_FIELD_PASSWORD );
 
     \add_settings_field(
       'padelpoint-login-field',
       \__( 'Username / Email', 'padelpoint-integration' ),
-      self::form_id_field( 'padelpoint-login' ),
+      self::form_id_field( Constants::SETTING_FIELD_LOGIN ),
       'padelpoint-settings'
     );
     \add_settings_field(
       'padelpoint-password-field',
       \__( 'Password', 'padelpoint-integration' ),
-      self::form_id_field( 'padelpoint-password', 'password' ),
+      self::form_id_field( Constants::SETTING_FIELD_PASSWORD, 'password' ),
       'padelpoint-settings'
     );
 
