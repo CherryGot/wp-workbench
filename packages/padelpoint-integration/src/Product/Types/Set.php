@@ -228,4 +228,29 @@ class Set extends \WC_Product_Variable {
     return $post_id;
   }
 
+  /**
+   * Returns the same add to cart handler as variable product type, since we don't want to define
+   * our custom handler.
+   *
+   * @param string $product_type The type the handler is going to use by default.
+   */
+  public static function get_add_to_cart_handler( string $product_type ): string {
+    if ( static::SLUG === $product_type ) {
+      return 'variable';
+    }
+
+    return $product_type;
+  }
+
+  /**
+   * Updates the map of data types and their data store class names for our custom product type.
+   *
+   * @param array<string,string> $stores Existing store map.
+   * @return array<string,string> Updated store map.
+   */
+  public static function add_data_store_class( array $stores ): array {
+    $stores[ 'product-' . static::SLUG ] = 'WC_Product_Variable_Data_Store_CPT';
+    return $stores;
+  }
+
 }

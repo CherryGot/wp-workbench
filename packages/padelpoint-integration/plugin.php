@@ -26,6 +26,21 @@ $init_handler = function (): void {
 
   add_filter( 'woocommerce_product_class', array( Types\Article::class, 'resolve_class' ), 10, 2 );
   add_filter( 'woocommerce_product_class', array( Types\Set::class, 'resolve_class' ), 10, 2 );
+
+  add_action(
+    'woocommerce_' . PadelPoint\Product\Types\Article::SLUG . '_add_to_cart',
+    'woocommerce_simple_add_to_cart'
+  );
+  add_action(
+    'woocommerce_' . PadelPoint\Product\Types\Set::SLUG . '_add_to_cart',
+    'woocommerce_variable_add_to_cart'
+  );
+
+  $callback = array( PadelPoint\Product\Types\Set::class, 'add_data_store_class' );
+  add_filter( 'woocommerce_data_stores', $callback );
+
+  $callback = array( PadelPoint\Product\Types\Set::class, 'get_add_to_cart_handler' );
+  add_filter( 'woocommerce_add_to_cart_handler', $callback );
 };
 add_action( 'init', $init_handler );
 
