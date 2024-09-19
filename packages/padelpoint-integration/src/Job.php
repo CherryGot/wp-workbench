@@ -72,7 +72,13 @@ class Job {
         continue;
       }
 
-      if ( ! in_array( $item->get_product()->get_type(), $product_types, true ) ) {
+      $type = $item->get_product()->get_type();
+      if ( 'variation' === $type ) {
+        $temp = \wc_get_product( $item->get_product()->get_parent_id() );
+        $type = $temp ? $temp->get_type() : $type;
+      }
+
+      if ( ! in_array( $type, $product_types, true ) ) {
         continue;
       }
 

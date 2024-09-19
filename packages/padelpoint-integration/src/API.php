@@ -71,7 +71,6 @@ class API {
       '/insertar_pedido.php',
       array(
         'method'  => 'POST',
-        'timeout' => 60,
         'headers' => array(
           'Content-Type' => 'application/json',
         ),
