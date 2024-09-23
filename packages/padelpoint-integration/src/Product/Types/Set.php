@@ -166,9 +166,8 @@ class Set extends \WC_Product_Variable {
     $meta_input = array(
       '_regular_price' => $variant['PRECIO'],
       '_price'         => $variant['PRECIO'],
-      '_manage_stock'  => 'yes',
-      '_stock'         => $variant['STOCK'],
       '_weight'        => $variant['PESO'],
+      '_manage_stock'  => 'yes',
     );
 
     if ( $variation ) {
@@ -196,6 +195,7 @@ class Set extends \WC_Product_Variable {
       return 0;
     }
 
+    \wc_update_product_stock( $post_id, $variant['STOCK'] );
     static::sync( $set_id );
 
     /*
