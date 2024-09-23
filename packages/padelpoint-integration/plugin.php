@@ -16,6 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) {
   exit;
 }
 
+if ( ! defined( 'PADELPOINT_INTEGRATION_PATH' ) ) {
+  define( 'PADELPOINT_INTEGRATION_PATH', plugin_dir_path( __FILE__ ) );
+}
+
 require 'vendor/autoload.php';
 
 use PadelPoint\Product\Types;

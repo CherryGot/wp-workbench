@@ -61,6 +61,38 @@ class API {
   }
 
   /**
+   * Makes a request to catalog endpoint and returns the data from API response.
+   *
+   * @param bool $reload A flag to mark whether to request data from remote API or local file.
+   * @return array<string,mixed> The data from the catalog response.
+   */
+  public static function get_catalog( bool $reload = false ): array {
+    $catalog_file_path = PADELPOINT_INTEGRATION_PATH . 'dist/catalog.json';
+    if ( ! $reload ) {
+      return json_decode( file_get_contents( $catalog_file_path ) ?: '{}', true );
+    }
+
+    if ( file_exists( $catalog_file_path ) ) {
+      \wp_delete_file( $catalog_file_path );
+    }
+
+    if ( ! is_dir( PADELPOINT_INTEGRATION_PATH . 'dist' ) ) {
+      \wp_mkdir_p( PADELPOINT_INTEGRATION_PATH . 'dist' );
+    }
+
+    $catalog = static::make_request(
+      '/obtener_json_catalogo_completo.php',
+      array(
+        'method'  => 'GET',
+        'timeout' => 60,
+      )
+    );
+    file_put_contents( $catalog_file_path, \wp_json_encode( $catalog ) );
+
+    return $catalog;
+  }
+
+  /**
    * Send a request to order articles on PadelPoint.
    *
    * @param array<string,mixed> $order_data The data about order.
