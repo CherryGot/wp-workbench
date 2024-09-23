@@ -76,7 +76,7 @@ class Article extends \WC_Product_Simple {
    * @param array<string,mixed> $articulo The raw article product from catalog.
    * @return int The post id of the created/updated product.
    */
-  public static function import( array $articulo ): int {
+  public static function import_and_get_id( array $articulo ): int {
     $post_id          = 0;
     $existing_product = \get_posts(
       array(

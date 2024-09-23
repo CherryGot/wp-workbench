@@ -76,7 +76,7 @@ class Set extends \WC_Product_Variable {
    * @param array<string,mixed> $set The raw set product from catalog.
    * @return int The post id of the created/updated product.
    */
-  public static function import( array $set ): int {
+  public static function import_and_get_id( array $set ): int {
     $product = \get_posts(
       array(
         'post_type'   => 'product',
