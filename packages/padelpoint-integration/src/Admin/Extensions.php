@@ -170,4 +170,42 @@ class Extensions {
     \PadelPoint\Job::update_availabilities( array( $product ) );
   }
 
+  /**
+   * Displays status of import status on admin pages.
+   */
+  public static function show_notice(): void {
+    $import_stats = \get_option( Constants::SETTING_FIELD_IMPORT_STATS, '' );
+    $import_stats = ! empty( $import_stats ) ? $import_stats : array();
+    if ( empty( $import_stats ) ) {
+      return;
+    }
+
+    $notice = \__( 'Latest import from PadelPoint API is finished.', 'padelpoint-integration' );
+
+    if (
+      $import_stats['articles'] < $import_stats['articles_count'] ||
+      $import_stats['sets'] < $import_stats['sets_count']
+    ) {
+      $notice = sprintf(
+        /* Translators: %d here are counts of categories, articles and sets. */
+        \__(
+          // phpcs:ignore Generic.Files.LineLength.MaxExceeded
+          'Importing contents from PadelPoint API. %1$d out of %2$d categories are available. Products processed: %3$d of %4$d articles, %5$d of %6$d sets.',
+          'padelpoint-integration'
+        ),
+        $import_stats['categories'],
+        $import_stats['categories_count'],
+        $import_stats['articles'],
+        $import_stats['articles_count'],
+        $import_stats['sets'],
+        $import_stats['sets_count']
+      );
+    } ?>
+
+    <div class="notice notice-info is-dismissible">
+      <p><?php echo esc_html( $notice ); ?></p>
+    </div>
+    <?php
+  }
+
 }

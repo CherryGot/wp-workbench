@@ -79,3 +79,5 @@ add_action( 'post_submitbox_minor_actions', $callback );
 
 $callback = array( PadelPoint\Admin\Extensions::class, 'handle_update_availbility_submission' );
 add_action( 'post_updated', $callback );
+
+add_action( 'admin_notices', array( PadelPoint\Admin\Extensions::class, 'show_notice' ) );
