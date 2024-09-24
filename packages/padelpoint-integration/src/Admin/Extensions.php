@@ -10,6 +10,7 @@ declare ( strict_types = 1 );
 namespace PadelPoint\Admin;
 
 use PadelPoint\Constants;
+use PadelPoint\Product\Types;
 
 /**
  * Wraps functions to follow PSR4 standard.
@@ -96,6 +97,77 @@ class Extensions {
         class="regular-text"
       />';
     };
+  }
+
+  /**
+   * Adds an "Update Availability" button on the product edit screen.
+   *
+   * @param mixed $post The post currently being edited.
+   */
+  public static function add_update_availability_button( mixed $post ): void {
+    $post = \get_post( $post );
+    if ( 'product' !== $post->post_type ) {
+      return;
+    }
+
+    $product       = \wc_get_product( $post );
+    $product_types = array( Types\Article::SLUG, Types\Set::SLUG );
+    if ( empty( $product ) || ! in_array( $product->get_type(), $product_types, true ) ) {
+      return;
+    } ?>
+
+    <div id="update-availability-action">
+      <button
+        value="1"
+        type="submit"
+        class="button"
+        id="update-availability"
+        name="update-availability"
+      >
+        <?php echo \esc_html__( 'Update Availability', 'padelpoint-integration' ); ?>
+      </button>
+      <style>
+        #update-availability { margin-right: 4px }
+      </style>
+    </div>
+    <?php
+  }
+
+  /**
+   * Handles the scenario when "Update Availability" button is clicked on the edit page.
+   *
+   * @param int $post_id The post being edited.
+   */
+  public static function handle_update_availbility_submission( int $post_id ): void {
+    $flag = false;
+    // phpcs:ignore WordPress.Security.NonceVerification.Missing
+    if ( isset( $_POST['update-availability'] ) ) {
+      // phpcs:ignore WordPress.Security.NonceVerification.Missing
+      $flag = \sanitize_key( \wp_unslash( $_POST['update-availability'] ) ) === '1';
+    }
+
+    if ( ! $flag ) {
+      return;
+    }
+
+    $post = \get_post( $post_id );
+    if ( 'product' !== $post->post_type ) {
+      return;
+    }
+
+    $product       = \wc_get_product( $post );
+    $product_types = array( Types\Article::SLUG, Types\Set::SLUG );
+    if ( empty( $product ) || ! in_array( $product->get_type(), $product_types, true ) ) {
+      return;
+    }
+
+    /*
+    We want to unset this since post_updated hook is called everytime when wp_update_post is
+    used. This leads to an infinite loop since this hook is called again and again. There
+    must be some better way to do it, but for now, this works.
+    */
+    unset( $_POST['update-availability'] );
+    \PadelPoint\Job::update_availabilities( array( $product ) );
   }
 
 }
