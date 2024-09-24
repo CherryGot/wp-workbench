@@ -27,7 +27,8 @@
     "roave/security-advisories": "dev-latest",
     "johnpbloch/wordpress": "6.4",
     "wpackagist-plugin/woocommerce": "9.1",
-    "wpackagist-plugin/advanced-custom-fields": "6.3"
+    "wpackagist-plugin/advanced-custom-fields": "6.3",
+    "wpackagist-plugin/woo-order-test": "^3.4"
   },
   "scripts": {
     "lint": "phpcs --error-severity=1 --warning-severity=1",
