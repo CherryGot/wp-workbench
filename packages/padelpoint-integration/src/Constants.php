@@ -2,7 +2,7 @@
 /**
  * This file here contiains the reusable constants used throughout the codebase.
  *
- * @pacakge arpadel
+ * @package arpadel
  */
 
 declare ( strict_types = 1 );
