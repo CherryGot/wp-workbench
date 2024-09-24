@@ -25,7 +25,7 @@ class Job {
     \delete_option( Constants::SETTING_FIELD_CATEGORY_MAP );
     \delete_option( Constants::SETTING_FIELD_IMPORT_STATS );
 
-    $catalog = API::get_catalog( ! defined( 'IS_DEVELOP_MODE' ) && ! IS_DEVELOP_MODE );
+    $catalog = API::get_catalog( ! defined( 'IS_DEVELOP_MODE' ) || ! IS_DEVELOP_MODE );
     if ( isset( $catalog['error'] ) && $catalog['error'] ) {
       error_log( 'Catalog downloaded contains the following error: ' . $catalog['message'] );
       return;
