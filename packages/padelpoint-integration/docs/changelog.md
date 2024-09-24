@@ -1,10 +1,11 @@
-- Feature: added a way to initiate imports manually
-- Feature: added a 12h cron for fetching catalog
+# Changelog
+
 ### 1.0.0
 
 > 24 September 2024
 
-
+- Feature: added a way to initiate imports manually
+- Feature: added a 12h cron for fetching catalog
 - Feature: added admin notice to show import status
 - Feature: update availibility after order is made
 - Fix: map PESO with _weight for articles
