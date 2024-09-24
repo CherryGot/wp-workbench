@@ -22,6 +22,17 @@ class Job {
    * the status of the import process and the API category to local category id map.
    */
   public static function fetch_and_store_catalog(): void {
+    $import_stats = \get_option( Constants::SETTING_FIELD_IMPORT_STATS, '' );
+    $import_stats = ! empty( $import_stats ) ? $import_stats : array();
+    if ( ! empty( $import_stats ) ) {
+      if (
+        $import_stats['articles'] < $import_stats['articles_count'] ||
+        $import_stats['sets'] < $import_stats['sets_count']
+      ) {
+        return; // There is an import already running.
+      }
+    }
+
     \delete_option( Constants::SETTING_FIELD_CATEGORY_MAP );
     \delete_option( Constants::SETTING_FIELD_IMPORT_STATS );
 
