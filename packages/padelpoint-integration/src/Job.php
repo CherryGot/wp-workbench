@@ -343,11 +343,11 @@ class Job {
    */
   private static function get_note_from_order_receipt( array $receipt ): string {
     if ( isset( $receipt['error'] ) && $receipt['error'] ) {
-      $no_error = \__( 'Unspecified error', 'padelpoint-integration' );
+      $no_error = __( 'Unspecified error', 'padelpoint-integration' );
       $message  = ! empty( $receipt['message'] ) ? $receipt['message'] : $no_error;
       return sprintf(
         /* Translators: %s is the error message, */
-        \__(
+        __(
           'The order was not forwarded to PadelPoint because of the following error: %s',
           'padelpoint-integration'
         ),
@@ -358,7 +358,7 @@ class Job {
       if ( $receipt['Numero de pedido'] > 0 ) {
         return sprintf(
           /* Translators: %d is the reference ID for order. */
-          \__(
+          __(
             'The order forwarded successfully on PadelPoint with reference: %d',
             'padelpoint-integration'
           ),
@@ -366,14 +366,14 @@ class Job {
         );
       }
       else {
-        return \__(
+        return __(
           'The order request to PadelPoint was successful but no valid reference was generated.',
           'padelpoint-integration'
         );
       }
     }
     else {
-      return \__(
+      return __(
         'The order request to PadelPoint was successful but no valid reference was generated.',
         'padelpoint-integration'
       );

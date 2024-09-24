@@ -22,8 +22,8 @@ class Extensions {
    */
   public static function init(): void {
     \add_options_page(
-      \__( 'PadelPoint Settings', 'padelpoint-integration' ),
-      \__( 'PadelPoint Settings', 'padelpoint-integration' ),
+      __( 'PadelPoint Settings', 'padelpoint-integration' ),
+      __( 'PadelPoint Settings', 'padelpoint-integration' ),
       'manage_options',
       'padelpoint-settings',
       array( static::class, 'render_settings_page' )
@@ -36,10 +36,10 @@ class Extensions {
   public static function render_settings_page(): void {
     ?>
     <div class="wrap">
-      <h1><?php \esc_html_e( 'PadelPoint Settings', 'padelpoint-integration' ); ?></h1>
+      <h1><?php esc_html_e( 'PadelPoint Settings', 'padelpoint-integration' ); ?></h1>
       <p>
         <?php
-        \esc_html_e(
+        esc_html_e(
           'Enter PadelPoint credentials and other settings here to make the API work.',
           'padelpoint-integration'
         );
@@ -66,13 +66,13 @@ class Extensions {
 
     \add_settings_field(
       'padelpoint-login-field',
-      \__( 'Username / Email', 'padelpoint-integration' ),
+      __( 'Username / Email', 'padelpoint-integration' ),
       self::form_id_field( Constants::SETTING_FIELD_LOGIN ),
       'padelpoint-settings'
     );
     \add_settings_field(
       'padelpoint-password-field',
-      \__( 'Password', 'padelpoint-integration' ),
+      __( 'Password', 'padelpoint-integration' ),
       self::form_id_field( Constants::SETTING_FIELD_PASSWORD, 'password' ),
       'padelpoint-settings'
     );
@@ -124,7 +124,7 @@ class Extensions {
         id="update-availability"
         name="update-availability"
       >
-        <?php echo \esc_html__( 'Update Availability', 'padelpoint-integration' ); ?>
+        <?php echo esc_html__( 'Update Availability', 'padelpoint-integration' ); ?>
       </button>
       <style>
         #update-availability { margin-right: 4px }
@@ -180,7 +180,7 @@ class Extensions {
       return;
     }
 
-    $notice = \__( 'Latest import from PadelPoint API is finished.', 'padelpoint-integration' );
+    $notice = __( 'Latest import from PadelPoint API is finished.', 'padelpoint-integration' );
 
     if (
       $import_stats['articles'] < $import_stats['articles_count'] ||
@@ -188,7 +188,7 @@ class Extensions {
     ) {
       $notice = sprintf(
         /* Translators: %d here are counts of categories, articles and sets. */
-        \__(
+        __(
           // phpcs:ignore Generic.Files.LineLength.MaxExceeded
           'Importing contents from PadelPoint API. %1$d out of %2$d categories are available. Products processed: %3$d of %4$d articles, %5$d of %6$d sets.',
           'padelpoint-integration'
