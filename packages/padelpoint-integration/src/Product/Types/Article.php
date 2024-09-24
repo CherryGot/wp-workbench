@@ -98,6 +98,10 @@ class Article extends \WC_Product_Simple {
       $meta_input['_price']         = $articulo['PRECIO'];
     }
 
+    if ( isset( $articulo['PESO'] ) && ! empty( $articulo['PESO'] ) ) {
+      $meta_input['_weight'] = $articulo['PESO'];
+    }
+
     if ( $existing_product ) {
       // Actualizar el producto existente.
       $post_id = $existing_product[0];
