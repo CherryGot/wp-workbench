@@ -1,0 +1,85 @@
+# Copyright (C) 2024 Chakrapani Gautam [https://cherrygot.me], Wendy Alarcón Mego
+# This file is distributed under the same license as the PadelPoint API Integration plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: PadelPoint API Integration 0.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/padelpoint-integration\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-09-24T07:15:53+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: padelpoint-integration\n"
+
+#. Plugin Name of the plugin
+msgid "PadelPoint API Integration"
+msgstr ""
+
+#. Description of the plugin
+msgid "Integration with the PadelPoint API to import product catalogue, check their availability and insert orders."
+msgstr ""
+
+#. Author of the plugin
+msgid "Chakrapani Gautam [https://cherrygot.me], Wendy Alarcón Mego"
+msgstr ""
+
+#: src/Admin/Extensions.php:25
+#: src/Admin/Extensions.php:26
+#: src/Admin/Extensions.php:39
+msgid "PadelPoint Settings"
+msgstr ""
+
+#: src/Admin/Extensions.php:42
+msgid "Enter PadelPoint credentials and other settings here to make the API work."
+msgstr ""
+
+#: src/Admin/Extensions.php:69
+msgid "Username / Email"
+msgstr ""
+
+#: src/Admin/Extensions.php:75
+msgid "Password"
+msgstr ""
+
+#: src/Admin/Extensions.php:127
+msgid "Update Availability"
+msgstr ""
+
+#: src/Admin/Extensions.php:183
+msgid "Latest import from PadelPoint API is finished."
+msgstr ""
+
+#. Translators: %d here are counts of categories, articles and sets.
+#: src/Admin/Extensions.php:191
+msgid "Importing contents from PadelPoint API. %1$d out of %2$d categories are available. Products processed: %3$d of %4$d articles, %5$d of %6$d sets."
+msgstr ""
+
+#: src/Job.php:346
+msgid "Unspecified error"
+msgstr ""
+
+#. Translators: %s is the error message,
+#: src/Job.php:350
+msgid "The order was not forwarded to PadelPoint because of the following error: %s"
+msgstr ""
+
+#. Translators: %d is the reference ID for order.
+#: src/Job.php:361
+msgid "The order forwarded successfully on PadelPoint with reference: %d"
+msgstr ""
+
+#: src/Job.php:369
+#: src/Job.php:376
+msgid "The order request to PadelPoint was successful but no valid reference was generated."
+msgstr ""
+
+#: src/Product/Types/Article.php:33
+msgid "PadelPoint Article"
+msgstr ""
+
+#: src/Product/Types/Set.php:33
+msgid "PadelPoint Set"
+msgstr ""

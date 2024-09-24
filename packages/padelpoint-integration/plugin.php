@@ -6,6 +6,8 @@
  * Version:          0.0.0
  * Author:           Chakrapani Gautam [https://cherrygot.me], Wendy Alarcón Mego
  * Requires Plugins: woocommerce, advanced-custom-fields
+ * Text Domain:      padelpoint-integration
+ * Domain Path:      /languages
  *
  * @package arpadel
  */
@@ -23,6 +25,8 @@ if ( ! defined( 'PADELPOINT_INTEGRATION_PATH' ) ) {
 require 'vendor/autoload.php';
 
 use PadelPoint\Product\Types;
+
+add_action( 'plugins_loaded', array( PadelPoint\Admin\Extensions::class, 'load_translations' ) );
 
 $init_handler = function (): void {
   add_filter( 'product_type_selector', array( Types\Article::class, 'register' ) );

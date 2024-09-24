@@ -18,6 +18,14 @@ use PadelPoint\Product\Types;
 class Extensions {
 
   /**
+   * Loads translation domain for this plugin.
+   */
+  public static function load_translations(): void {
+    $domain_path = \plugin_basename( PADELPOINT_INTEGRATION_PATH ) . '/languages';
+    \load_plugin_textdomain( 'padelpoint-integration', false, $domain_path );
+  }
+
+  /**
    * Initialize our Admin extensions.
    */
   public static function init(): void {
