@@ -89,11 +89,14 @@ class Article extends \WC_Product_Simple {
     );
 
     $meta_input = array(
-      '_regular_price' => $articulo['PRECIO'],
-      '_price'         => $articulo['PRECIO'],
-      '_manage_stock'  => 'yes',
-      '_stock'         => $articulo['STOCK'],
+      '_manage_stock' => 'yes',
+      '_stock'        => $articulo['STOCK'],
     );
+
+    if ( isset( $articulo['PRECIO'] ) && ! empty( $articulo['PRECIO'] ) ) {
+      $meta_input['_regular_price'] = $articulo['PRECIO'];
+      $meta_input['_price']         = $articulo['PRECIO'];
+    }
 
     if ( $existing_product ) {
       // Actualizar el producto existente.
@@ -123,7 +126,9 @@ class Article extends \WC_Product_Simple {
       return 0;
     }
 
-    wp_set_object_terms( $post_id, $articulo['CODIGOS_CATWEB'], 'product_cat' );
+    if ( isset( $articulo['CODIGOS_CATWEB'] ) ) {
+      wp_set_object_terms( $post_id, $articulo['CODIGOS_CATWEB'], 'product_cat' );
+    }
 
     // Actualizar campos personalizados (ACF).
     if ( ! empty( $articulo['IMAGENES'] ) ) {

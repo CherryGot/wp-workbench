@@ -121,7 +121,9 @@ class Set extends \WC_Product_Variable {
       return 0;
     }
 
-    \update_post_meta( $post_id, '_product_attributes', $attributes );
+    if ( ! empty( $attributes ) ) {
+      \update_post_meta( $post_id, '_product_attributes', $attributes );
+    }
 
     \wp_set_object_terms( $post_id, static::SLUG, 'product_type' );
     \wp_set_object_terms( $post_id, array(), 'product_cat' );
