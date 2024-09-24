@@ -363,4 +363,56 @@ class Job {
     }
   }
 
+  /**
+   * Requests API to get availabilies of the products specified.
+   *
+   * @param \WC_Product[] $products
+   * @return array<int,mixed> Status of update availability request.
+   */
+  public static function update_availabilities( array $products ): array {
+    if ( empty( $products ) ) {
+      return array();
+    }
+
+    $status_map = array();
+    foreach ( $products as $product ) {
+      $availability = API::check_availability( $product->get_sku() );
+      if ( isset( $availability['error'] ) && $availability['error'] ) {
+        $status_map[ $product->get_id() ] = $availability;
+      }
+
+      if ( isset( $availability['data'] ) && is_array( $availability['data'] ) ) {
+        $categoria_map = \get_option( Constants::SETTING_FIELD_CATEGORY_MAP, '' );
+        $categoria_map = ! empty( $categoria_map ) ? $categoria_map : array();
+
+        $status_map[ $product->get_id() ] = true; // Signifying that product is found.
+
+        if ( Product\Types\Article::SLUG === $product->get_type() ) {
+          static::import_articles( array( $availability['data'] ), $categoria_map );
+        }
+
+        if ( Product\Types\Set::SLUG === $product->get_type() ) {
+          // API design is stupid. The keys are not same in catalog and availability responses.
+          $set                               = $availability['data'];
+          $set['sku']                        = $set['CODIGO'];
+          $set['descripcion']                = $set['DESCRIPCION'];
+          $set['lineas']                     = $set['LINEAS'];
+          $set['descripcion_multiplicador1'] = $set['DESCRIPCION_MULTIPLICADOR1'];
+          $set['descripcion_multiplicador2'] = $set['DESCRIPCION_MULTIPLICADOR2'];
+
+          foreach ( $set['lineas'] as $i => $item ) {
+            $set['lineas'][ $i ]['CODIGO']         = $item['ARTICULO'];
+            $set['lineas'][ $i ]['MULTIPLICADOR1'] = $item['MULTI1'];
+            $set['lineas'][ $i ]['MULTIPLICADOR2'] = $item['MULTI2'];
+            $set['lineas'][ $i ]['CATEGORIAS_WEB'] = $item['CODIGOS_CATWEB'];
+          }
+
+          static::import_sets( array( $set ), $categoria_map );
+        }
+      }
+    }
+
+    return $status_map;
+  }
+
 }

@@ -111,4 +111,22 @@ class API {
     );
   }
 
+  /**
+   * For a given SKU, fetches the stock related details.
+   *
+   * @param string $sku The sku of the product.
+   * @return array<string,mixed> The response from the API.
+   */
+  public static function check_availability( string $sku ): array {
+    return static::make_request(
+      '/consultar_disponibilidad.php',
+      array(
+        'method' => 'GET',
+        'body'   => array(
+          'CODIGO' => $sku,
+        ),
+      )
+    );
+  }
+
 }
