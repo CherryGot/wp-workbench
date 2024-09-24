@@ -22,4 +22,6 @@ class Constants {
 
   public const SETTING_FIELD_IMPORT_STATS = 'padelpoint-import_stats';
 
+  public const ACTION_SLUG_MANUAL_IMPORT = 'init-catalog-fetch';
+
 }

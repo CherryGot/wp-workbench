@@ -34,35 +34,29 @@ class Extensions {
       __( 'PadelPoint Settings', 'padelpoint-integration' ),
       'manage_options',
       'padelpoint-settings',
-      array( static::class, 'render_settings_page' )
+      function (): void {
+        require_once 'Templates/settings-page.php';
+      }
     );
   }
 
   /**
-   * Renders PadelPoint Settings page.
+   * Fetch and store catalog when requested for manaul import.
    */
-  public static function render_settings_page(): void {
-    ?>
-    <div class="wrap">
-      <h1><?php esc_html_e( 'PadelPoint Settings', 'padelpoint-integration' ); ?></h1>
-      <p>
-        <?php
-        esc_html_e(
-          'Enter PadelPoint credentials and other settings here to make the API work.',
-          'padelpoint-integration'
-        );
-        ?>
-      </p>
+  public static function handle_manual_import_request(): void {
+    if (
+      ! isset( $_REQUEST['_wpnonce'] ) || empty( $_REQUEST['_wpnonce'] ) ||
+      ! \wp_verify_nonce(
+        \sanitize_key( \wp_unslash( $_REQUEST['_wpnonce'] ) ),
+        Constants::ACTION_SLUG_MANUAL_IMPORT
+      )
+    ) {
+      return;
+    }
 
-      <form method="post" action="options.php">
-        <?php
-        \settings_fields( 'padelpoint-settings' );
-        \do_settings_sections( 'padelpoint-settings' );
-        \submit_button();
-        ?>
-      </form>
-    </div>
-    <?php
+    \PadelPoint\Job::fetch_and_store_catalog();
+    \wp_safe_redirect( \wp_get_referer() );
+    exit();
   }
 
   /**

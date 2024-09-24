@@ -90,3 +90,6 @@ $callback = array( PadelPoint\Admin\Extensions::class, 'handle_update_availbilit
 add_action( 'post_updated', $callback );
 
 add_action( 'admin_notices', array( PadelPoint\Admin\Extensions::class, 'show_notice' ) );
+
+$callback = array( PadelPoint\Admin\Extensions::class, 'handle_manual_import_request' );
+add_action( 'admin_action_' . PadelPoint\Constants::ACTION_SLUG_MANUAL_IMPORT, $callback );
