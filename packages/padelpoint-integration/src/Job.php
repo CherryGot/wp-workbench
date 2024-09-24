@@ -247,6 +247,23 @@ class Job {
 
       $order->save();
     }
+
+    $product_types = array( Product\Types\Article::SLUG, Product\Types\Set::SLUG );
+    $find_products = function ( $item ) use ( $product_types ) {
+      $product = $item->get_product();
+      if ( 'variation' === $product->get_type() ) {
+        $product = \wc_get_product( $product->get_parent_id() );
+      }
+
+      if ( ! $product || ! in_array( $product->get_type(), $product_types, true ) ) {
+        return null;
+      }
+
+      return $product;
+    };
+
+    $products = array_filter( array_map( $find_products, $order->get_items() ) );
+    static::update_availabilities( $products );
   }
 
   /**
