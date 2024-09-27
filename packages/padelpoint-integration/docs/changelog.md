@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.0.1
+
+> 27 September 2024
+
+- Fix: changed strict php 8.1 requirements
+
 ### 1.0.0
 
 > 24 September 2024
