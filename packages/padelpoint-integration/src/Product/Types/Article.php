@@ -143,8 +143,7 @@ class Article extends \WC_Product_Simple {
       }
     }
 
-    $fields  = array( 'MARCA', 'FORMA', 'SUPERFICIE', 'JUGADOR', 'NUCLEO', 'NIVEL' );
-    $fields += array( 'TIPO_DE_JUEGO', 'DUREZA', 'PESO', 'TIPO_DE_SUELA' );
+    $fields = array( 'MARCA' ); // Add more API fields to save as ACF field here, if needed.
     foreach ( $fields as $field ) {
       if ( isset( $articulo[ $field ] ) ) {
         \update_field( strtolower( $field ), $articulo[ $field ], $post_id );
