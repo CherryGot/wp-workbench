@@ -31,6 +31,7 @@
     "lint": "phpcs --error-severity=1 --warning-severity=1",
     "test": "phpunit --colors=always",
     "release": "./build/release.sh",
+    "make-pot": "sh -c '[ -e packages/$0/languages/ ] && wp i18n make-pot packages/$0 packages/$0/languages/$0-src.pot --slug=$0 --domain=$0 --exclude=/vendor/'",
     "build-zip": "./build/zipify.sh",
     "build-docs": "find packages/ -maxdepth 1 -type d -exec sh -c 'cd \"{}\" && [ -e mkdocs.yml ] && mkdocs build' \\;",
     "build-autoload": "find packages/ -maxdepth 1 -type d -exec sh -c 'cd \"{}\" && [ -e composer.json ] && composer dump-autoload -o' \\;"
