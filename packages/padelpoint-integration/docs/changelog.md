@@ -1,5 +1,13 @@
 # Changelog
 
+### 1.0.2
+
+> 01 October 2024
+
+- Fix: correctly identify uncategorized term
+- Fix: category parents not importing issue
+- Fix: invalid type breaking edit product page
+
 ### 1.0.1
 
 > 27 September 2024
