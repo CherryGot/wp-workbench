@@ -59,7 +59,7 @@ else
 fi
 
 # Check if there are feature/fix commits since the latest tag.
-if ! git log --oneline "$latest_tag"...HEAD -- "packages/$package_name" | grep -qE "^(feat|fix)\($package_name\)"; then
+if ! git log --oneline --pretty=format:"%s" "$latest_tag"...HEAD -- "packages/$package_name" | grep -qE "^(feat|fix)\($package_name\)"; then
   echo "No relevant commits for the release were found."
   exit 5
 fi
@@ -69,6 +69,11 @@ sed -i "s/\"version\": \".*\"/\"version\": \"$new_version\"/" packages/${package
 sed -i "s/\(Version:[[:space:]]*\).*$/\1$new_version/" packages/${package_name}/plugin.php
 
 # Generate changelog. Check if awks output can be processed before prepending
+mkdir -p packages/$package_name/docs/
+if [ ! -f "packages/$package_name/docs/changelog.md" ]; then
+  touch "packages/$package_name/docs/changelog.md"
+fi
+
 awk -v prepend="$( date -u +"%d %B %Y" )" \
   "NR==3{print \"### $new_version\n\n> \" prepend \"\n\n\"} {print} NR!=3 && FNR==NR {totalLines=FNR} FNR!=NR {print}" \
   "packages/$package_name/docs/changelog.md" \
@@ -85,5 +90,5 @@ git add packages/$package_name/plugin.php \
   packages/$package_name/composer.json \
   packages/$package_name/docs/changelog.md
 
-git commit -m "build($package_name): Release of version - $new_version"
+git commit -m "build($package_name): release of version - $new_version"
 git tag "$package_name/$new_version"
