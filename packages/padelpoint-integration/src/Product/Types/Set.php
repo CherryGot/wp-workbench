@@ -215,7 +215,10 @@ class Set extends \WC_Product_Variable {
     */
     \wp_set_object_terms( $set_id, $variant['CATEGORIAS_WEB'], 'product_cat', true );
     if ( count( $variant['CATEGORIAS_WEB'] ) > 0 ) {
-      \wp_remove_object_terms( $set_id, 'uncategorized', 'product_cat' );
+      $default_term = \get_option( 'default_product_cat', 0 );
+      if ( ! empty( $default_term ) && is_numeric( $default_term ) && (int) $default_term > 0 ) {
+        \wp_remove_object_terms( $set_id, (int) $default_term, 'product_cat' );
+      }
     }
 
     // Actualizar campos personalizados (ACF).
