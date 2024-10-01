@@ -38,17 +38,17 @@ class Job {
 
     $catalog = API::get_catalog( ! defined( 'IS_DEVELOP_MODE' ) || ! IS_DEVELOP_MODE );
     if ( isset( $catalog['error'] ) && $catalog['error'] ) {
-      error_log( 'Catalog downloaded contains the following error: ' . $catalog['message'] );
+      Utils::log( 'Catalog downloaded contains the following error: ' . $catalog['message'] );
       return;
     }
 
     $categoria_map = array();
     $categorias    = isset( $catalog['categorias'] ) ? $catalog['categorias'] : array();
-    error_log( 'Total de categorías a procesar: ' . count( $categorias ) . PHP_EOL );
+    Utils::log( 'Total de categorías a procesar: ' . count( $categorias ) . PHP_EOL );
 
     // Crear todas las categorías primero.
     foreach ( $categorias as $categoria ) {
-      error_log( "Attempting to insert the category: {$categoria['NOMBRE']}..." );
+      Utils::log( "Attempting to insert the category: {$categoria['NOMBRE']}..." );
 
       $term_id = Product\Category::import_and_get_id( $categoria );
       if ( $term_id > 0 ) {
@@ -63,7 +63,7 @@ class Job {
           0 !== $categoria['CATEGORIA_PADRE'] &&
           isset( $categoria_map[ $categoria['CATEGORIA_PADRE'] ] )
         ) {
-          error_log( "Assigning parent for the category: {$categoria['NOMBRE']}..." );
+          Utils::log( "Assigning parent for the category: {$categoria['NOMBRE']}..." );
           Product\Category::assign_parent(
             $categoria_map[ $categoria['CODIGO'] ],
             $categoria_map[ $categoria['CATEGORIA_PADRE'] ]
@@ -73,7 +73,7 @@ class Job {
     }
 
     \add_option( Constants::SETTING_FIELD_CATEGORY_MAP, $categoria_map, '', false );
-    error_log( 'Total de categorías procesadas: ' . count( $categoria_map ) . PHP_EOL );
+    Utils::log( 'Total de categorías procesadas: ' . count( $categoria_map ) . PHP_EOL );
 
     $import_stats = array(
       'categories'       => count( $categoria_map ),
@@ -161,9 +161,9 @@ class Job {
    */
   private static function import_articles( array $articles, array $categoria_map ): void {
     foreach ( $articles as $article ) {
-      error_log( "Importing article with code {$article['CODIGO']}: {$article['DESCRIPCION']}..." );
+      Utils::log( "Importing article with SKU {$article['CODIGO']}: {$article['DESCRIPCION']}..." );
       if ( $article['CODIGO'] <= 0 ) {
-        error_log( 'Weird Article with SKU set to 0. Skipping.' . PHP_EOL );
+        Utils::log( 'Weird Article with SKU set to 0. Skipping.' . PHP_EOL );
         continue;
       }
 
@@ -176,11 +176,11 @@ class Job {
 
       $post_id = Product\Types\Article::import_and_get_id( $article );
       if ( $post_id <= 0 ) {
-        error_log( 'Could not create or update article, skipping.' . PHP_EOL );
+        Utils::log( 'Could not create or update article, skipping.' . PHP_EOL );
         continue;
       }
 
-      error_log( "Producto insertado: {$article['DESCRIPCION']} (ID: $post_id)" . PHP_EOL );
+      Utils::log( "Producto insertado: {$article['DESCRIPCION']} (ID: $post_id)" . PHP_EOL );
     }
   }
 
@@ -192,22 +192,22 @@ class Job {
    */
   private static function import_sets( array $sets, array $categoria_map ): void {
     foreach ( $sets as $set ) {
-      error_log( "Importing Conjunto with SKU {$set['sku']}: {$set['descripcion']}..." );
+      Utils::log( "Importing Conjunto with SKU {$set['sku']}: {$set['descripcion']}..." );
       if ( $set['sku'] <= 0 ) {
-        error_log( 'Weird Conjunto with SKU set to 0. Skipping' . PHP_EOL );
+        Utils::log( 'Weird Conjunto with SKU set to 0. Skipping' . PHP_EOL );
         continue;
       }
 
       $set_id = Product\Types\Set::import_and_get_id( $set );
       if ( $set_id <= 0 ) {
-        error_log( 'Could not create or update set, skipping.' . PHP_EOL );
+        Utils::log( 'Could not create or update set, skipping.' . PHP_EOL );
         continue;
       }
 
       foreach ( $set['lineas'] as $item ) {
-        error_log( "Importing variant with code {$item['CODIGO']} for set: {$set_id}..." );
+        Utils::log( "Importing variant with code {$item['CODIGO']} for set: {$set_id}..." );
         if ( $item['CODIGO'] <= 0 ) {
-          error_log( 'Weird variant with SKU set to 0. Skipping' );
+          Utils::log( 'Weird variant with SKU set to 0. Skipping' );
           continue;
         }
 
@@ -219,14 +219,14 @@ class Job {
 
         $post_id = Product\Types\Set::import_variant( $set_id, $item );
         if ( $post_id <= 0 ) {
-          error_log( 'Could not create or update variant, skipping.' );
+          Utils::log( 'Could not create or update variant, skipping.' );
           continue;
         }
 
-        error_log( 'Variant updated/inserted: (ID: $post_id)' );
+        Utils::log( 'Variant updated/inserted: (ID: $post_id)' );
       }
 
-      error_log( "Producto insertado: {$set['descripcion']} (ID: $set_id)" . PHP_EOL );
+      Utils::log( "Producto insertado: {$set['descripcion']} (ID: $set_id)" . PHP_EOL );
     }
   }
 

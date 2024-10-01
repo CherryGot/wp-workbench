@@ -9,6 +9,8 @@ declare ( strict_types = 1 );
 
 namespace PadelPoint\Product;
 
+use PadelPoint\Utils;
+
 /**
  * The class to wrap up the logic.
  */
@@ -23,7 +25,7 @@ class Category {
    */
   public static function import_and_get_id( array $categoria ): int {
     if ( $categoria['CODIGO'] <= 0 ) {
-      error_log( "Weird category with CODIGO set to 0: {$categoria['NOMBRE']}" );
+      Utils::log( "Weird category with CODIGO set to 0: {$categoria['NOMBRE']}" );
       return 0;
     }
 
@@ -46,11 +48,11 @@ class Category {
     if ( ! empty( $terms ) ) {
       $result = \wp_update_term( $terms[0], 'product_cat', $data );
       if ( \is_wp_error( $result ) ) {
-        error_log( "Error al actualizar la categoría: {$result->get_error_message()}" );
+        Utils::log( "Error al actualizar la categoría: {$result->get_error_message()}" );
         return 0;
       }
 
-      error_log( "Categoría actualizada: {$categoria['NOMBRE']} (ID: {$terms[0]})" . PHP_EOL );
+      Utils::log( "Categoría actualizada: {$categoria['NOMBRE']} (ID: {$terms[0]})" . PHP_EOL );
       return $terms[0];
     }
 
@@ -63,12 +65,12 @@ class Category {
 
     $term = \wp_insert_term( $categoria['NOMBRE'], 'product_cat', $data );
     if ( \is_wp_error( $term ) ) {
-      error_log( "Error al insertar la categoría: {$term->get_error_message()}" );
+      Utils::log( "Error al insertar la categoría: {$term->get_error_message()}" );
       return 0;
     }
 
     \update_term_meta( $term['term_id'], '_codigo', $categoria['CODIGO'] );
-    error_log( "Categoría insertada: {$categoria['NOMBRE']} (ID: {$term['term_id']})" . PHP_EOL );
+    Utils::log( "Categoría insertada: {$categoria['NOMBRE']} (ID: {$term['term_id']})" . PHP_EOL );
     return $term['term_id'];
   }
 
@@ -81,11 +83,11 @@ class Category {
   public static function assign_parent( int $term_id, int $parent_term_id ): void {
     $result = \wp_update_term( $term_id, 'product_cat', array( 'parent' => $parent_term_id ) );
     if ( \is_wp_error( $result ) ) {
-      error_log( "Error al actualizar la relación de jerarquía: {$result->get_error_message()}" );
+      Utils::log( "Error al actualizar la relación de jerarquía: {$result->get_error_message()}" );
       return;
     }
 
-    error_log( "Relación de jerarquía configurada: (ID: $term_id) con padre ID: $parent_term_id" );
+    Utils::log( "Relación de jerarquía configurada: (ID: $term_id) con padre ID: $parent_term_id" );
   }
 
 }

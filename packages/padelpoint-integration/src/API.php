@@ -36,7 +36,7 @@ class API {
     $args['headers']['Authorization'] = 'Basic ' . static::get_auth_hash();
     $response                         = \wp_remote_request( static::ENDPOINT . $path, $args );
     if ( \is_wp_error( $response ) ) {
-      error_log( 'Error al conectar con la API: ' . $response->get_error_message() . PHP_EOL );
+      Utils::log( 'Error al conectar con la API: ' . $response->get_error_message() . PHP_EOL );
       return array();
     }
 
@@ -45,7 +45,7 @@ class API {
     $data = json_decode( $body, true );
 
     if ( json_last_error() !== JSON_ERROR_NONE ) {
-      error_log( 'Error al decodificar JSON: ' . json_last_error_msg() . PHP_EOL );
+      Utils::log( 'Error al decodificar JSON: ' . json_last_error_msg() . PHP_EOL );
       return array(
         'error'   => true,
         'message' => json_last_error_msg(),
@@ -53,7 +53,7 @@ class API {
     }
 
     if ( isset( $data['error'] ) && $data['error'] ) {
-      error_log( 'Error en la respuesta de la API: ' . $data['message'] . PHP_EOL );
+      Utils::log( 'Error en la respuesta de la API: ' . $data['message'] . PHP_EOL );
       return $data;
     }
 
