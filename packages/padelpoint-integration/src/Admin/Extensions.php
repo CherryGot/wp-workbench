@@ -104,9 +104,9 @@ class Extensions {
   /**
    * Adds an "Update Availability" button on the product edit screen.
    *
-   * @param mixed $post The post currently being edited.
+   * @param \WP_Post $post The post currently being edited.
    */
-  public static function add_update_availability_button( mixed $post ): void {
+  public static function add_update_availability_button( \WP_Post $post ): void {
     $post = \get_post( $post );
     if ( 'product' !== $post->post_type ) {
       return;
