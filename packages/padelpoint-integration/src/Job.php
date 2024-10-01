@@ -61,7 +61,7 @@ class Job {
       if ( isset( $categoria_map[ $categoria['CODIGO'] ] ) ) {
         if (
           0 !== $categoria['CATEGORIA_PADRE'] &&
-          isset( $categoristatusa_map[ $categoria['CATEGORIA_PADRE'] ] )
+          isset( $categoria_map[ $categoria['CATEGORIA_PADRE'] ] )
         ) {
           error_log( "Assigning parent for the category: {$categoria['NOMBRE']}..." );
           Product\Category::assign_parent(
