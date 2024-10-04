@@ -108,7 +108,7 @@ class Job {
       return;
     }
 
-    \set_transient( 'import_product_queue_processing', true, 30 * 60 ); // 30 minutes.
+    \set_transient( 'import_product_queue_processing', true, 5 * 60 ); // 5 minutes.
 
     $catalog = API::get_catalog();
     $catalog = ! empty( $catalog ) || ! empty( $catalog['error'] ) ? $catalog : array();
