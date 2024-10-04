@@ -113,6 +113,7 @@ class Job {
     $catalog = API::get_catalog();
     $catalog = ! empty( $catalog ) || ! empty( $catalog['error'] ) ? $catalog : array();
     if ( empty( $catalog ) ) {
+      \delete_transient( 'import_product_queue_processing' );
       return;
     }
 
