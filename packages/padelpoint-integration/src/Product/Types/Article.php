@@ -119,7 +119,7 @@ class Article extends \WC_Product_Simple {
         array(
           'post_title'  => $articulo['DESCRIPCION'],
           'post_type'   => 'product',
-          'post_status' => 'publish',
+          'post_status' => 'draft',
           'meta_input'  => array_merge( $meta_input, array( '_sku' => $articulo['CODIGO'] ) ),
         )
       );

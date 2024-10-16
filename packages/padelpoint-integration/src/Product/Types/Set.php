@@ -87,7 +87,14 @@ class Set extends \WC_Product_Variable {
       )
     );
 
-    $product = empty( $product ) ? new static() : new static( $product[0] );
+    if ( empty( $product ) ) {
+      $product = new static();
+      $product->set_status( 'draft' );
+    }
+    else {
+      $product = new static( $product[0] );
+    }
+
     $product->set_name( $set['descripcion'] );
     $product->set_children( array() );
     $product->set_sku( $set['sku'] );
