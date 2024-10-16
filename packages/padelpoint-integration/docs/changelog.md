@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.1.0
+
+> 16 October 2024
+
+
 ### 1.0.2
 
 > 01 October 2024
@@ -41,3 +46,11 @@
 - Feature: logic to import an article product type
 - Feature: new improved logic to import categories
 - Feature: registered custom product types
+- Feature: appends custom order note to API orders
+- Feature: appends custom order note to API orders
+- Feature: creates product post with 'draft' status
+- Feature: creates product post with 'draft' status
+- Fix: delete transient if catalog is empty
+- Fix: delete transient if catalog is empty
+- Fix: incorrect syntax while calling error_log
+- Fix: incorrect syntax while calling error_log
