@@ -290,7 +290,11 @@ class Job {
       $address_lines .= ",\n {$order->get_shipping_address_2()}";
     }
 
-    $order_notes = $order->get_customer_note();
+    $order_notes  = "==== Nota de AR Padel ====\n";
+    $order_notes .= 'Caja sin logos, precinto sin logos.';
+    $order_notes .= "\n\n==== Nota del cliente ====\n";
+    $order_notes .= $order->get_customer_note();
+
     if ( defined( 'IS_DEVELOP_MODE' ) && IS_DEVELOP_MODE ) {
       $order_notes .= "\n\n==== DEVELOPER NOTE ====\n";
       $order_notes .= 'This is a dummy order to test the order functionality. Do not proceed!';
