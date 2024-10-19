@@ -74,14 +74,20 @@ if [ ! -f "packages/$package_name/docs/changelog.md" ]; then
   touch "packages/$package_name/docs/changelog.md"
 fi
 
+log_output=$(git log --pretty=format:"%s" $latest_tag...HEAD -- "packages/$package_name" | \
+  grep -iE "^(feat|fix)\($package_name\):" | \
+  sed -E "s/feat\($package_name\)/Feature/i; s/fix\($package_name\)/Fix/i" | \
+  awk '{print "- " $0}')
+
 awk -v prepend="$( date -u +"%d %B %Y" )" \
-  "NR==3{print \"### $new_version\n\n> \" prepend \"\n\n\"} {print} NR!=3 && FNR==NR {totalLines=FNR} FNR!=NR {print}" \
-  "packages/$package_name/docs/changelog.md" \
-  <(git log --pretty=format:"%s" $latest_tag...HEAD -- "packages/$package_name" | \
-    grep -iE "^(feat|fix)\($package_name\):" | \
-    sed -E "s/feat\($package_name\)/Feature/i; s/fix\($package_name\)/Fix/i" | \
-    awk '{print "- " $0}') \
-  > packages/$package_name/docs/changelog.md.tmp
+    -v new_version="$new_version" \
+    -v log_output="$log_output" \
+    'NR==3 {
+      print "### " new_version "\n\n> " prepend "\n\n" log_output "\n";
+    }
+    { print }
+    ' "packages/$package_name/docs/changelog.md" \
+    > "packages/$package_name/docs/changelog.md.tmp"
 
 mv "packages/$package_name/docs/changelog.md.tmp" "packages/$package_name/docs/changelog.md"
 

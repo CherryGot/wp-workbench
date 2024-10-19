@@ -2,7 +2,7 @@
   "extends": ["@wordpress/stylelint-config/scss"],
   "rules": {
     "indentation": 2,
-    "function-parentheses-space-inside": "always",
+    "function-parentheses-space-inside": "always-single-line",
     "value-keyword-case": [
       "lower",
       {
@@ -10,7 +10,9 @@
       }
     ],
     "at-rule-empty-line-before": null,
-    "max-line-length": 80
+    "max-line-length": 80,
+    "declaration-colon-space-before": null
   },
-  "ignoreFiles": [ "packages/wp-edit_post/**/*.scss" ]
+  "ignoreFiles": [
+  ]
 }

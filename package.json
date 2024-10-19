@@ -5,8 +5,10 @@
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@wordpress/scripts": "^27.1.0",
+    "eslint-plugin-align-assignments": "^1.1.2",
     "husky": "^8.0.3",
-    "sass": "^1.41.1"
+    "sass": "^1.41.1",
+    "webpack-merge": "^6.0.1"
   },
   "scripts": {
     "lint": "./build/wp-scripts.sh lint",
