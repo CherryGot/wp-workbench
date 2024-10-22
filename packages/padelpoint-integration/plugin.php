@@ -94,6 +94,12 @@ add_action( 'admin_notices', array( PadelPoint\Admin\Extensions::class, 'show_no
 $callback = array( PadelPoint\Admin\Extensions::class, 'handle_manual_import_request' );
 add_action( 'admin_action_' . PadelPoint\Constants::ACTION_SLUG_MANUAL_IMPORT, $callback );
 
+$callback = array( PadelPoint\Product\Types\Article::class, 'remove_thumbnail_placeholder_html' );
+\add_filter( 'woocommerce_single_product_image_thumbnail_html', $callback );
+
+$callback = array( PadelPoint\Product\Types\Article::class, 'render_thumbnail_html' );
+\add_action( 'woocommerce_product_thumbnails', $callback, 100 );
+
 // Filter and callback to handle the Fibo Search plugin, if used.
 $callback = array( PadelPoint\Product\Types\Article::class, 'get_api_image_src' );
 \add_filter( 'dgwt/wcas/product/thumbnail_src', $callback );

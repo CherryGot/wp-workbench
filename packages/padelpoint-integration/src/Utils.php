@@ -26,4 +26,39 @@ class Utils {
     }
   }
 
+  /**
+   * For a given url, this function returns html to render a gallery image item.
+   *
+   * @param string $src The image url.
+   * @param bool   $is_main Whether the image is the main item of the gallery.
+   * @return string The html.
+   */
+  public static function get_gallery_image_html( string $src, bool $is_main = false ): string {
+    $flexslider = (bool) \apply_filters(
+      'woocommerce_single_product_flexslider_enabled',
+      \get_theme_support( 'wc-product-gallery-slider' )
+    );
+    $image_size = \apply_filters(
+      'woocommerce_gallery_image_size',
+      $flexslider || $is_main ? 'woocommerce_single' : ''
+    );
+
+    $split_src = explode( '/', $src );
+    $alt_text  = trim( end( $split_src ) );
+    $image     = '<img
+      class="' . \esc_attr( $is_main ? 'wp-post-image' : '' ) . ' size-' . $image_size . '"
+      alt="' . \esc_attr( $alt_text ) . '"
+      src="' . \esc_url( $src ) . '"
+      data-src="' . \esc_url( $src ) . '"
+    />';
+
+    return '<div
+      data-thumb="' . \esc_url( $src ) . '"
+      data-thumb-alt="' . \esc_attr( $alt_text ) . '"
+      class="woocommerce-product-gallery__image"
+    >
+      <a href="' . \esc_url( $src ) . '">' . $image . '</a>
+    </div>';
+  }
+
 }
