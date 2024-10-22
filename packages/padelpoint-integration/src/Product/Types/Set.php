@@ -9,6 +9,8 @@ declare (strict_types = 1);
 
 namespace PadelPoint\Product\Types;
 
+use PadelPoint\Utils;
+
 /**
  * Wraps the logic that filedoc was talking about.
  */
@@ -323,6 +325,64 @@ class Set extends \WC_Product_Variable {
     }
 
     return $src;
+  }
+
+  /**
+   * Empties the html for a product thumbnail in case the set variations has an API image.
+   *
+   * @param string $html The thumbnail html.
+   * @return string The updated thumbnail html.
+   */
+  public static function remove_thumbnail_placeholder_html( string $html ): string {
+    if ( false === strpos( $html, 'woocommerce-product-gallery__image--placeholder' ) ) {
+      return $html;
+    }
+
+    global $product;
+
+    $thumb_src = self::get_api_image_src( '', $product->get_id(), $product );
+    if ( empty( $thumb_src ) ) {
+      return $html;
+    }
+
+    return '';
+  }
+
+  /**
+   * Prepares and renders the HTML for thumbnails generated from API images.
+   */
+  public static function render_thumbnail_html(): void {
+    global $product;
+    if ( empty( $product ) || self::SLUG !== $product->get_type() ) {
+      return;
+    }
+
+    $has_no_main_image_yet = false;
+    if ( empty( $product->get_image_id() ) ) {
+      $has_no_main_image_yet = true;
+    }
+
+    $images = array();
+    foreach ( $product->get_children() as $variation ) {
+      for ( $i = 1; $i <= 2; $i += 1 ) {
+        $img = \get_field( "imagen_$i", $variation );
+        if ( ! empty( $img ) ) {
+          $images[] = $img;
+        }
+      }
+    }
+
+    $total_images = count( $images );
+    if ( $total_images <= 0 ) {
+      return;
+    }
+
+    echo \wp_kses_post(
+      Utils::get_gallery_image_html( $images[0], $has_no_main_image_yet )
+    );
+    for ( $i = 1; $i < $total_images; $i += 1 ) {
+      echo \wp_kses_post( Utils::get_gallery_image_html( $images[ $i ] ) );
+    }
   }
 
 }
