@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.2.1
+
+> 22 October 2024
+
+- Fix: specify no. of args for fibosearch filter
+
 ### 1.2.0
 
 > 22 October 2024
