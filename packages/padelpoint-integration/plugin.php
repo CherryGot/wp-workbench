@@ -108,7 +108,7 @@ $callback = array( PadelPoint\Product\Types\Set::class, 'render_thumbnail_html' 
 
 // Filter and callback to handle the Fibo Search plugin, if used.
 $callback = array( PadelPoint\Product\Types\Article::class, 'get_api_image_src' );
-\add_filter( 'dgwt/wcas/product/thumbnail_src', $callback );
+\add_filter( 'dgwt/wcas/product/thumbnail_src', $callback, 10, 3 );
 
 $callback = array( PadelPoint\Product\Types\Set::class, 'get_api_image_src' );
-\add_filter( 'dgwt/wcas/product/thumbnail_src', $callback );
+\add_filter( 'dgwt/wcas/product/thumbnail_src', $callback, 10, 3 );
