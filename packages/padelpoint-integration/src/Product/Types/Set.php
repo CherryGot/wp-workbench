@@ -265,4 +265,64 @@ class Set extends \WC_Product_Variable {
     return $stores;
   }
 
+  /**
+   * Overrides the default get_image() function definition.
+   *
+   * @param string              $size (default: 'woocommerce_thumbnail').
+   * @param array<string,mixed> $attr Image attributes.
+   * @param bool                $p Whether to use placeholder image when no image found.
+   * @return string The image tag with the thumbnail in it as src.
+   *
+   * phpcs:disable SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+   */
+  public function get_image( $size = 'woocommerce_thumbnail', $attr = array(), $p = true ): string {
+    // phpcs:enable SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+
+    $image           = parent::get_image( $size, $attr, $p );
+    $placeholder_src = \wc_placeholder_img_src( $size );
+
+    if ( false === strpos( $image, $placeholder_src ) ) {
+      return $image;
+    }
+
+    $api_image = self::get_api_image_src( '', $this->get_id(), $this );
+    $image     = str_replace( $placeholder_src, $api_image, $image );
+    return preg_replace( '/srcset="[^"]+"/', '', $image );
+  }
+
+  /**
+   * Gets the main image of the product from the API imported fields, in case the existing image
+   * is empty or a placeholder.
+   *
+   * @param string $src The existing image src to be used as product image.
+   * @param int    $pid The ID of the product in question.
+   * @param object $product The product itself.
+   * @return string The relevant image URL.
+   */
+  public static function get_api_image_src( string $src, int $pid, object $product ): string {
+    if ( ! ( $product instanceof \WC_Product ) ) {
+      $product = \wc_get_product( $pid );
+    }
+
+    if ( self::SLUG !== $product->get_type() ) {
+      return $src;
+    }
+
+    $placeholder_url = \wc_placeholder_img_src();
+    if ( ! empty( $src ) && $src !== $placeholder_url ) {
+      return $src;
+    }
+
+    foreach ( $product->get_children() as $variation ) {
+      for ( $i = 1; $i <= 2; $i += 1 ) {
+        $img = \get_field( "imagen_$i", $variation );
+        if ( ! empty( $img ) ) {
+          return $img;
+        }
+      }
+    }
+
+    return $src;
+  }
+
 }
