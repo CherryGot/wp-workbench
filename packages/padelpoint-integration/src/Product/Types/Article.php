@@ -176,7 +176,8 @@ class Article extends \WC_Product_Simple {
     }
 
     $api_image = self::get_api_image_src( '', $this->get_id(), $this );
-    return str_replace( $placeholder_src, $api_image, $image );
+    $image     = str_replace( $placeholder_src, $api_image, $image );
+    return preg_replace( '/srcset="[^"]+"/', '', $image );
   }
 
   /**
