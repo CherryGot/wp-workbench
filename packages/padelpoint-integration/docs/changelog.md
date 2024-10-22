@@ -1,9 +1,23 @@
 # Changelog
 
+### 1.2.0
+
+> 22 October 2024
+
+- Feature: sets to have api images in their gallery
+- Feature: sets to have api image thumbnails
+- Fix: removes srcset containing placeholder img
+- Feature: articles to have api images in gallery
+- Feature: articles to have api images as thumbnail
+
 ### 1.1.0
 
 > 16 October 2024
 
+- Feature: appends custom order note to API orders
+- Feature: creates product post with 'draft' status
+- Fix: delete transient if catalog is empty
+- Fix: incorrect syntax while calling error_log
 
 ### 1.0.2
 
@@ -46,11 +60,3 @@
 - Feature: logic to import an article product type
 - Feature: new improved logic to import categories
 - Feature: registered custom product types
-- Feature: appends custom order note to API orders
-- Feature: appends custom order note to API orders
-- Feature: creates product post with 'draft' status
-- Feature: creates product post with 'draft' status
-- Fix: delete transient if catalog is empty
-- Fix: delete transient if catalog is empty
-- Fix: incorrect syntax while calling error_log
-- Fix: incorrect syntax while calling error_log
