@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.3.0
+
+> 09 November 2024
+
+- Feature: override elementor product image dyn tag
+
 ### 1.2.1
 
 > 22 October 2024
