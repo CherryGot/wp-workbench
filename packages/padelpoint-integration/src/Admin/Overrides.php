@@ -25,14 +25,8 @@ class Overrides {
       return;
     }
 
-    if ( ! isset( $manager->tags_info['woocommerce-product-image-tag'] ) ) {
-      return;
-    }
-
-    $manager->tags_info['woocommerce-product-image-tag'] = array(
-      'class'    => Elementor\ImageTag::class,
-      'instance' => new Elementor\ImageTag(),
-    );
+    $manager->unregister( 'woocommerce-product-image-tag' );
+    $manager->register( new Elementor\ImageTag() );
   }
 
 }

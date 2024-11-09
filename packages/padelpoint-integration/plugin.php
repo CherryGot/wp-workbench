@@ -114,4 +114,4 @@ $callback = array( PadelPoint\Product\Types\Set::class, 'get_api_image_src' );
 \add_filter( 'dgwt/wcas/product/thumbnail_src', $callback, 10, 3 );
 
 $callback = array( PadelPoint\Admin\Overrides::class, 'replace_product_image_dynamic_tag' );
-\add_action( 'elementor/dynamic_tags/register', $callback );
+\add_action( 'elementor/dynamic_tags/register', $callback, 100 );
