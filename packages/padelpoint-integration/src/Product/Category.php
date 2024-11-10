@@ -30,8 +30,12 @@ class Category {
     }
 
     $data = array(
-      'description' => $categoria['DESCRIPCION'],
       'name'        => $categoria['NOMBRE'],
+      'description' => str_replace(
+        array( 'PADELPOINT', 'PadelPoint', 'Padelpoint' ),
+        array( 'AR PÁDEL', 'AR Pádel', 'AR Pádel' ),
+        $categoria['DESCRIPCION']
+      ),
     );
 
     $terms = \get_terms(
