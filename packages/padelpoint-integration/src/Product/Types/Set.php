@@ -176,10 +176,18 @@ class Set extends \WC_Product_Variable {
 
     $meta_input = array(
       '_regular_price' => $variant['PRECIO'],
-      '_price'         => $variant['PRECIO'],
+      '_sale_price'    => $variant['PRECIO'],
       '_weight'        => $variant['PESO'],
       '_manage_stock'  => 'yes',
     );
+
+    if (
+      isset( $variant['PRECIO_RECOMENDADO'] ) &&
+      ! empty( $variant['PRECIO_RECOMENDADO'] ) &&
+      (float) $variant['PRECIO_RECOMENDADO'] > 0.0
+    ) {
+      $meta_input['_regular_price'] = $variant['PRECIO_RECOMENDADO'];
+    }
 
     if ( $variation ) {
       $post_id = $variation[0];
