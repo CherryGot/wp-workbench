@@ -104,6 +104,8 @@ class Job {
     }
 
     $is_already_running = \get_transient( 'import_product_queue_processing' );
+    $transient_timeout  = \get_option( '_transient_timeout_import_product_queue_processing' );
+    $is_already_running = $is_already_running && $transient_timeout && $transient_timeout < time();
     if ( ! empty( $is_already_running ) ) {
       return;
     }
