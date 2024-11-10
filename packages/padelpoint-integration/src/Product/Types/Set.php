@@ -82,6 +82,7 @@ class Set extends \WC_Product_Variable {
     $product = \get_posts(
       array(
         'post_type'   => 'product',
+        'post_status' => array( 'publish', 'draft', 'future', 'private', 'trash' ),
         'meta_key'    => '_sku',
         'meta_value'  => $set['sku'],
         'numberposts' => 1,

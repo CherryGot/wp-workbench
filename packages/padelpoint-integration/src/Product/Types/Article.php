@@ -83,6 +83,7 @@ class Article extends \WC_Product_Simple {
     $existing_product = \get_posts(
       array(
         'post_type'   => 'product',
+        'post_status' => array( 'publish', 'draft', 'future', 'private', 'trash' ),
         'meta_key'    => '_sku',
         'meta_value'  => $articulo['CODIGO'],
         'numberposts' => 1,
