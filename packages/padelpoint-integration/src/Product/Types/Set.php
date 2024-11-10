@@ -100,7 +100,14 @@ class Set extends \WC_Product_Variable {
 
     $product->set_name( $set['descripcion'] );
     $product->set_children( array() );
-    $product->set_sku( $set['sku'] );
+
+    try {
+      $product->set_sku( $set['sku'] );
+    }
+    catch ( \Exception $e ) {
+      Utils::log( 'Trouble setting an SKU: ' . $set['sku'] . ' ' . $e->getMessage() );
+      return 0;
+    }
 
     $attributes = array();
     foreach ( array( 'descripcion_multiplicador1', 'descripcion_multiplicador2' ) as $i => $attr ) {
