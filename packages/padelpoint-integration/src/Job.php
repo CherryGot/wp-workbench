@@ -114,7 +114,10 @@ class Job {
 
     $catalog = API::get_catalog();
     $catalog = ! empty( $catalog ) || ! empty( $catalog['error'] ) ? $catalog : array();
+    // If there is no catalog to work with, reset the job.
     if ( empty( $catalog ) ) {
+      \delete_option( Constants::SETTING_FIELD_CATEGORY_MAP );
+      \delete_option( Constants::SETTING_FIELD_IMPORT_STATS );
       \delete_transient( 'import_product_queue_processing' );
       return;
     }
