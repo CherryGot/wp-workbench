@@ -18,10 +18,15 @@ namespace PadelPoint;
 class Job {
 
   /**
-   * Reads the catalog from the API and stores it in the options for later consumption. Also resets
-   * the status of the import process and the API category to local category id map.
+   * Reads the catalog from the API and stores a few options for later consumption. Also resets the
+   * status of the import process and the API category to local category id map.
+   *
+   * The category id map is generated after importing the category terms. However, the hierarchical
+   * relationship among these terms can be optionally omitted.
+   *
+   * @param bool $reassign_category_parents Whether to reset the parent-child category relationship.
    */
-  public static function fetch_and_store_catalog(): void {
+  public static function fetch_and_store_catalog( bool $reassign_category_parents = false ): void {
     $import_stats = \get_option( Constants::SETTING_FIELD_IMPORT_STATS, '' );
     $import_stats = ! empty( $import_stats ) ? $import_stats : array();
     if ( ! empty( $import_stats ) ) {
@@ -57,17 +62,19 @@ class Job {
     }
 
     // Configurar relaciones de jerarquía.
-    foreach ( $categorias as $categoria ) {
-      if ( isset( $categoria_map[ $categoria['CODIGO'] ] ) ) {
-        if (
-          0 !== $categoria['CATEGORIA_PADRE'] &&
-          isset( $categoria_map[ $categoria['CATEGORIA_PADRE'] ] )
-        ) {
-          Utils::log( "Assigning parent for the category: {$categoria['NOMBRE']}..." );
-          Product\Category::assign_parent(
-            $categoria_map[ $categoria['CODIGO'] ],
-            $categoria_map[ $categoria['CATEGORIA_PADRE'] ]
-          );
+    if ( $reassign_category_parents ) {
+      foreach ( $categorias as $categoria ) {
+        if ( isset( $categoria_map[ $categoria['CODIGO'] ] ) ) {
+          if (
+            0 !== $categoria['CATEGORIA_PADRE'] &&
+            isset( $categoria_map[ $categoria['CATEGORIA_PADRE'] ] )
+          ) {
+            Utils::log( "Assigning parent for the category: {$categoria['NOMBRE']}..." );
+            Product\Category::assign_parent(
+              $categoria_map[ $categoria['CODIGO'] ],
+              $categoria_map[ $categoria['CATEGORIA_PADRE'] ]
+            );
+          }
         }
       }
     }
