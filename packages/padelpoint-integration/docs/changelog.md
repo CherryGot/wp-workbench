@@ -1,5 +1,18 @@
 # Changelog
 
+### 1.4.0
+
+> 11 November 2024
+
+- Feature: checkbox to overwrite category relations
+- Fix: stops the import if can't find catalog
+- Fix: forces explicit transient timeout check
+- Feature: replace PadelPoint with AR Padel in desc
+- Fix: do not fail if can't set an sku
+- Fix: looks for other product stati in queries
+- Feature: sets regular & sale prices for products
+- Fix: override with pub method, not pvt members
+
 ### 1.3.0
 
 > 09 November 2024
