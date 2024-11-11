@@ -54,7 +54,12 @@ class Extensions {
       return;
     }
 
-    \PadelPoint\Job::fetch_and_store_catalog();
+    $reset_categories = false;
+    if ( isset( $_REQUEST['reset_categories'] ) && ! empty( $_REQUEST['reset_categories'] ) ) {
+      $reset_categories = '1' === \sanitize_key( \wp_unslash( $_REQUEST['reset_categories'] ) );
+    }
+
+    \PadelPoint\Job::fetch_and_store_catalog( $reset_categories );
     \wp_safe_redirect( \wp_get_referer() );
     exit();
   }
