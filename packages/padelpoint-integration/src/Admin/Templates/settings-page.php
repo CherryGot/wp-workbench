@@ -80,9 +80,11 @@ use PadelPoint\Constants; ?>
           />
           <label for="reset_categories">%s</label>
         </p>',
-        \esc_html__(
-          'While importing, reset the parent-child relationship among product categories.',
-          'padelpoint-integration'
+        \esc_html(
+          __(
+            'While importing, reset the parent-child relationship among product categories.',
+            'padelpoint-integration'
+          )
         )
       );
 

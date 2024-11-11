@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PadelPoint API Integration 0.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/padelpoint-"
 "integration\n"
-"POT-Creation-Date: 2024-09-24T10:39:35+00:00\n"
-"PO-Revision-Date: 2024-09-24 16:10+0530\n"
+"POT-Creation-Date: 2024-11-11T08:12:00+00:00\n"
+"PO-Revision-Date: 2024-11-11 13:47+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -37,24 +37,24 @@ msgstr "Chakrapani Gautam [https://cherrygot.me], Wendy Alarcón Mego"
 msgid "PadelPoint Settings"
 msgstr "Ajustes PadelPoint"
 
-#: src/Admin/Extensions.php:71
+#: src/Admin/Extensions.php:76
 msgid "Username / Email"
 msgstr "Nombre de usuario / Email"
 
-#: src/Admin/Extensions.php:77
+#: src/Admin/Extensions.php:82
 msgid "Password"
 msgstr "Contraseña"
 
-#: src/Admin/Extensions.php:129
+#: src/Admin/Extensions.php:134
 msgid "Update Availability"
 msgstr "Actualizar disponibilidad"
 
-#: src/Admin/Extensions.php:185
+#: src/Admin/Extensions.php:190
 msgid "Latest import from PadelPoint API is finished."
 msgstr "Se ha finalizado la última importación desde la API de PadelPoint."
 
 #. Translators: %d here are counts of categories, articles and sets.
-#: src/Admin/Extensions.php:193
+#: src/Admin/Extensions.php:198
 msgid ""
 "Importing contents from PadelPoint API. %1$d out of %2$d categories are "
 "available. Products processed: %3$d of %4$d articles, %5$d of %6$d sets."
@@ -91,27 +91,49 @@ msgstr ""
 "Ya hay una importación en proceso, no se puede iniciar una importación "
 "manual en este momento."
 
-#: src/Admin/Templates/settings-page.php:67
+#: src/Admin/Templates/settings-page.php:84
+msgid ""
+"While importing, reset the parent-child relationship among product "
+"categories."
+msgstr ""
+"Al importar, restablezca la relación padre-hijo entre las categorías de "
+"productos."
+
+#: src/Admin/Templates/settings-page.php:91
 msgid "Run Import"
 msgstr "Ejecutar importación"
 
-#: src/Job.php:357
+#: src/Admin/Templates/settings-page.php:99
+msgid ""
+"You are about to reset the parent-child relationships among product "
+"categories with this import. This will rewrite the existing relationships "
+"that some of the terms may have.\n"
+"\n"
+"Are you sure you want to proceed?"
+msgstr ""
+"Está a punto de restablecer las relaciones padre-hijo entre las categorías "
+"de productos con esta importación. Esto reescribirá las relaciones "
+"existentes que puedan tener algunos de los términos.\n"
+"\n"
+"¿Está seguro de que desea continuar?"
+
+#: src/Job.php:374
 msgid "Unspecified error"
 msgstr "Error no especificado"
 
 #. Translators: %s is the error message,
-#: src/Job.php:361
+#: src/Job.php:378
 msgid ""
 "The order was not forwarded to PadelPoint because of the following error: %s"
 msgstr ""
 "El pedido no se ha reenviado a PadelPoint debido al siguiente error: %s"
 
 #. Translators: %d is the reference ID for order.
-#: src/Job.php:372
+#: src/Job.php:389
 msgid "The order forwarded successfully on PadelPoint with reference: %d"
 msgstr "El pedido se ha enviado correctamente a PadelPoint con referencia: %d"
 
-#: src/Job.php:380 src/Job.php:387
+#: src/Job.php:397 src/Job.php:404
 msgid ""
 "The order request to PadelPoint was successful but no valid reference was "
 "generated."
@@ -119,10 +141,10 @@ msgstr ""
 "La solicitud de pedido a PadelPoint fue exitosa pero no se generó ninguna "
 "referencia válida."
 
-#: src/Product/Types/Article.php:33
+#: src/Product/Types/Article.php:35
 msgid "PadelPoint Article"
 msgstr "Artículo PadelPoint"
 
-#: src/Product/Types/Set.php:33
+#: src/Product/Types/Set.php:35
 msgid "PadelPoint Set"
 msgstr "Conjunto PadelPoint"
