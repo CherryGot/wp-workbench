@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.5.1
+
+> 08 December 2024
+
+- Fix: added Spanish translations
+
 ### 1.5.0
 
 > 08 December 2024
