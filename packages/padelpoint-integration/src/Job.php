@@ -134,7 +134,7 @@ class Job {
 
     $did_article_import_run = false;
     if ( isset( $catalog['articulos'] ) && is_array( $catalog['articulos'] ) ) {
-      $batch_size = 500;
+      $batch_size = 100;
       $articles   = array();
 
       if ( $import_stats['articles'] < $import_stats['articles_count'] ) {
@@ -152,7 +152,7 @@ class Job {
     }
 
     if ( isset( $catalog['conjuntos'] ) && is_array( $catalog['conjuntos'] ) ) {
-      $batch_size = 100;
+      $batch_size = 10;
       $sets       = array();
 
       if ( $import_stats['sets'] < $import_stats['sets_count'] ) {
