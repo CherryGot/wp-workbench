@@ -18,6 +18,25 @@ namespace PadelPoint;
 class Job {
 
   /**
+   * Checks whether it's the weekday to run the imports or not. If yes, calls the function to fetch
+   * the catalog.
+   */
+  public static function run_weekly_imports(): void {
+    $import_day = \get_option( Constants::SETTING_FIELD_IMPORT_WEEKDAY, 0 );
+    if ( empty( $import_day ) || ! is_numeric( $import_day ) ) {
+      $import_day = 0;
+    }
+    $import_day = (int) $import_day;
+
+    $current_weekday = (int) \wp_date( 'w' );
+    if ( $current_weekday !== $import_day ) {
+      return;
+    }
+
+    self::fetch_and_store_catalog();
+  }
+
+  /**
    * Reads the catalog from the API and stores a few options for later consumption. Also resets the
    * status of the import process and the API category to local category id map.
    *

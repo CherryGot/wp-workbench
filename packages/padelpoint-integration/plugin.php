@@ -59,9 +59,9 @@ $admin_footer_handler = function (): void {
 add_action( 'admin_footer', $admin_footer_handler );
 
 if ( ! wp_next_scheduled( 'fetch_catalog_event' ) ) {
-  wp_schedule_event( time(), 'twicedaily', 'fetch_catalog_event' );
+  wp_schedule_event( time(), 'daily', 'fetch_catalog_event' );
 }
-add_action( 'fetch_catalog_event', array( PadelPoint\Job::class, 'fetch_and_store_catalog' ) );
+add_action( 'fetch_catalog_event', array( PadelPoint\Job::class, 'run_weekly_imports' ) );
 
 add_filter( 'acf/get_post_types', array( PadelPoint\Admin\ACF::class, 'enable_variations' ) );
 
