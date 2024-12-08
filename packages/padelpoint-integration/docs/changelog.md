@@ -1,5 +1,13 @@
 # Changelog
 
+### 1.5.0
+
+> 08 December 2024
+
+- Feature: weekly run imports on a chosen day
+- Feature: field to choose weekday to run import on
+- Fix: reducing batch size to improve site speed
+
 ### 1.4.0
 
 > 11 November 2024
