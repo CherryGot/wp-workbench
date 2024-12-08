@@ -70,17 +70,24 @@ class Extensions {
   public static function register_setting_fields(): void {
     \register_setting( 'padelpoint-settings', Constants::SETTING_FIELD_LOGIN );
     \register_setting( 'padelpoint-settings', Constants::SETTING_FIELD_PASSWORD );
+    \register_setting( 'padelpoint-settings', Constants::SETTING_FIELD_IMPORT_WEEKDAY );
 
     \add_settings_field(
-      'padelpoint-login-field',
+      Constants::SETTING_FIELD_LOGIN . '-field',
       __( 'Username / Email', 'padelpoint-integration' ),
       self::form_id_field( Constants::SETTING_FIELD_LOGIN ),
       'padelpoint-settings'
     );
     \add_settings_field(
-      'padelpoint-password-field',
+      Constants::SETTING_FIELD_PASSWORD . '-field',
       __( 'Password', 'padelpoint-integration' ),
       self::form_id_field( Constants::SETTING_FIELD_PASSWORD, 'password' ),
+      'padelpoint-settings'
+    );
+    \add_settings_field(
+      Constants::SETTING_FIELD_IMPORT_WEEKDAY . '-field',
+      __( 'Run weekly imports on', 'padelpoint-integration' ),
+      self::weekday_selector_field( Constants::SETTING_FIELD_IMPORT_WEEKDAY ),
       'padelpoint-settings'
     );
 
@@ -103,6 +110,34 @@ class Extensions {
         value="' . \esc_attr( $value . '' ) . '"
         class="regular-text"
       />';
+    };
+  }
+
+  /**
+   * Generates a callback to register weekday selector input.
+   *
+   * @param string $setting The setting key to read value of.
+   * @return \Closure A callable function to be used for setting field registration.
+   */
+  private static function weekday_selector_field( string $setting ): \Closure {
+    return function () use ( $setting ): void {
+      $value = \get_option( $setting, '0' );
+      if ( empty( $value ) || ! is_numeric( $value ) ) {
+        $value = '0';
+      }
+
+      global $wp_locale;
+
+      echo '<select name="' . \esc_attr( $setting ) . '" id="' . \esc_attr( $setting ) . '" >';
+      for ( $day_index = 0; $day_index <= 6; $day_index++ ) {
+        $selected = ( (int) $value === $day_index ) ? 'selected="selected"' : '';
+
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo "<option value='" . \esc_attr( (string) $day_index ) . "' $selected>";
+        echo \esc_html( $wp_locale->get_weekday( $day_index ) ) . '</option>';
+      }
+
+      echo '</select>';
     };
   }
 
