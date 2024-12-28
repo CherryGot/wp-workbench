@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.5.2
+
+> 28 December 2024
+
+- Fix: fixes logic to assign price fields
+
 ### 1.5.1
 
 > 08 December 2024
