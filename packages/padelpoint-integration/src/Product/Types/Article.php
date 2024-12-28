@@ -98,7 +98,8 @@ class Article extends \WC_Product_Simple {
 
     if ( isset( $articulo['PRECIO'] ) && ! empty( $articulo['PRECIO'] ) ) {
       $meta_input['_regular_price'] = $articulo['PRECIO'];
-      $meta_input['_sale_price']    = $articulo['PRECIO'];
+      $meta_input['_sale_price']    = '';
+      $meta_input['_price']         = $articulo['PRECIO'];
     }
 
     if (
@@ -106,6 +107,7 @@ class Article extends \WC_Product_Simple {
       ! empty( $articulo['PRECIO_RECOMENDADO'] ) &&
       (float) $articulo['PRECIO_RECOMENDADO'] > 0.0
     ) {
+      $meta_input['_sale_price']    = $meta_input['_price'];
       $meta_input['_regular_price'] = $articulo['PRECIO_RECOMENDADO'];
     }
 
