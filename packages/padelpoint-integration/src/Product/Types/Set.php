@@ -225,7 +225,6 @@ class Set extends \WC_Product_Variable {
     }
 
     \wc_update_product_stock( $post_id, $variant['STOCK'] );
-    static::sync( $set_id );
 
     /*
     Important: The API returns categories for each variant in CATEGORIAS_WEB. However, woocommerce

@@ -258,6 +258,7 @@ class Job {
         Utils::log( 'Variant updated/inserted: (ID: $post_id)' );
       }
 
+      Product\Types\Set::sync( $set_id );
       Utils::log( "Producto insertado: {$set['descripcion']} (ID: $set_id)" . PHP_EOL );
     }
   }
