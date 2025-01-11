@@ -1,15 +1,15 @@
-# Copyright (C) 2024 Chakrapani Gautam [https://cherrygot.me], Wendy Alarcón Mego
+# Copyright (C) 2025 Chakrapani Gautam [https://cherrygot.me], Wendy Alarcón Mego
 # This file is distributed under the same license as the PadelPoint API Integration plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: PadelPoint API Integration 1.5.0\n"
+"Project-Id-Version: PadelPoint API Integration 1.5.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/padelpoint-integration\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-08T20:30:22+00:00\n"
+"POT-Creation-Date: 2025-01-11T11:24:55+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: padelpoint-integration\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: src/Admin/Extensions.php:33
 #: src/Admin/Extensions.php:34
-#: src/Admin/Templates/settings-page.php:13
+#: src/Admin/Templates/settings-page.php:27
 msgid "PadelPoint Settings"
 msgstr ""
 
@@ -57,53 +57,69 @@ msgstr ""
 msgid "Importing contents from PadelPoint API. %1$d out of %2$d categories are available. Products processed: %3$d of %4$d articles, %5$d of %6$d sets."
 msgstr ""
 
-#: src/Admin/Templates/settings-page.php:16
+#: src/Admin/Templates/settings-page.php:30
 msgid "Enter PadelPoint credentials and other settings here to make the API work."
 msgstr ""
 
-#: src/Admin/Templates/settings-page.php:29
+#: src/Admin/Templates/settings-page.php:57
 msgid "Manual Catalog Import"
 msgstr ""
 
-#: src/Admin/Templates/settings-page.php:32
+#: src/Admin/Templates/settings-page.php:60
 msgid "For troubleshooting purposes or when automatic updates fail to fetch recent changes, you may need to manually initiate the catalog import process."
 msgstr ""
 
-#: src/Admin/Templates/settings-page.php:56
+#: src/Admin/Templates/settings-page.php:70
 msgid "An import is already in the process, can not initiate a manual import right now."
 msgstr ""
 
-#: src/Admin/Templates/settings-page.php:84
+#: src/Admin/Templates/settings-page.php:92
 msgid "While importing, reset the parent-child relationship among product categories."
 msgstr ""
 
-#: src/Admin/Templates/settings-page.php:91
+#: src/Admin/Templates/settings-page.php:104
 msgid "Run Import"
 msgstr ""
 
-#: src/Admin/Templates/settings-page.php:99
+#: src/Admin/Templates/settings-page.php:123
 msgid ""
 "You are about to reset the parent-child relationships among product categories with this import. This will rewrite the existing relationships that some of the terms may have.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
 
-#: src/Job.php:393
+#: src/Admin/Templates/settings-page.php:155
+msgid "Synchronize PadelPoint Sets"
+msgstr ""
+
+#: src/Admin/Templates/settings-page.php:158
+msgid "In the event when the Sets show \"Read More\" button on UI, sync them to fix the issue."
+msgstr ""
+
+#: src/Admin/Templates/settings-page.php:167
+msgid "An import is already in the process, please wait for it to finish."
+msgstr ""
+
+#: src/Admin/Templates/settings-page.php:182
+msgid "Sync Sets"
+msgstr ""
+
+#: src/Job.php:394
 msgid "Unspecified error"
 msgstr ""
 
 #. Translators: %s is the error message,
-#: src/Job.php:397
+#: src/Job.php:398
 msgid "The order was not forwarded to PadelPoint because of the following error: %s"
 msgstr ""
 
 #. Translators: %d is the reference ID for order.
-#: src/Job.php:408
+#: src/Job.php:409
 msgid "The order forwarded successfully on PadelPoint with reference: %d"
 msgstr ""
 
-#: src/Job.php:416
-#: src/Job.php:423
+#: src/Job.php:417
+#: src/Job.php:424
 msgid "The order request to PadelPoint was successful but no valid reference was generated."
 msgstr ""
 
