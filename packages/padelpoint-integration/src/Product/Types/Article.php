@@ -115,13 +115,15 @@ class Article extends \WC_Product_Simple {
       $meta_input['_weight'] = $articulo['PESO'];
     }
 
+    $title = html_entity_decode( $articulo['DESCRIPCION'], ENT_QUOTES, 'UTF-8' );
     if ( $existing_product ) {
       // Actualizar el producto existente.
       $post_id = $existing_product[0];
       \wp_update_post(
         array(
           'ID'         => $post_id,
-          'post_title' => $articulo['DESCRIPCION'],
+          'post_title' => $title,
+          'post_name'  => \sanitize_title( $title ),
           'meta_input' => $meta_input,
         )
       );
@@ -130,7 +132,8 @@ class Article extends \WC_Product_Simple {
       // Crear nuevo producto.
       $post_id = \wp_insert_post(
         array(
-          'post_title'  => $articulo['DESCRIPCION'],
+          'post_title'  => $title,
+          'post_name'   => \sanitize_title( $title ),
           'post_type'   => 'product',
           'post_status' => 'draft',
           'meta_input'  => array_merge( $meta_input, array( '_sku' => $articulo['CODIGO'] ) ),

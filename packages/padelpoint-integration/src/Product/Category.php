@@ -29,8 +29,9 @@ class Category {
       return 0;
     }
 
-    $data = array(
-      'name'        => $categoria['NOMBRE'],
+    $category_name = html_entity_decode( $categoria['NOMBRE'], ENT_QUOTES, 'UTF-8' );
+    $data          = array(
+      'name'        => $category_name,
       'description' => str_replace(
         array( 'PADELPOINT', 'PadelPoint', 'Padelpoint' ),
         array( 'AR PÁDEL', 'AR Pádel', 'AR Pádel' ),
@@ -60,14 +61,14 @@ class Category {
       return $terms[0];
     }
 
-    $data['slug']        = \sanitize_title( $categoria['NOMBRE'] );
+    $data['slug']        = \sanitize_title( $category_name );
     $duplication_counter = 1;
     while ( ! empty( \term_exists( $data['slug'], 'product_cat' ) ) ) {
       $duplication_counter += 1;
       $data['slug']        .= "-$duplication_counter";
     }
 
-    $term = \wp_insert_term( $categoria['NOMBRE'], 'product_cat', $data );
+    $term = \wp_insert_term( $category_name, 'product_cat', $data );
     if ( \is_wp_error( $term ) ) {
       Utils::log( "Error al insertar la categoría: {$term->get_error_message()}" );
       return 0;

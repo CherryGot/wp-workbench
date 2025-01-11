@@ -98,7 +98,8 @@ class Set extends \WC_Product_Variable {
       $product = new static( $product[0] );
     }
 
-    $product->set_name( $set['descripcion'] );
+    $title = html_entity_decode( $set['descripcion'], ENT_QUOTES, 'UTF-8' );
+    $product->set_name( $title );
     $product->set_children( array() );
 
     try {
@@ -137,6 +138,13 @@ class Set extends \WC_Product_Variable {
     if ( $post_id <= 0 ) {
       return 0;
     }
+
+    \wp_update_post(
+      array(
+        'ID'        => $post_id,
+        'post_name' => \sanitize_title( $title ),
+      )
+    );
 
     if ( ! empty( $attributes ) ) {
       \update_post_meta( $post_id, '_product_attributes', $attributes );
