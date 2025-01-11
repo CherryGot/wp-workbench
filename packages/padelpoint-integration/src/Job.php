@@ -480,4 +480,37 @@ class Job {
     return $status_map;
   }
 
+  /**
+   * Synchronize faulty sets that couldn't sync during import for some reason.
+   */
+  public static function sync_faulty_sets(): void {
+    $faulty_products = \get_posts(
+      array(
+        'fields'         => 'ids',
+        'post_type'      => 'product',
+        'post_status'    => array( 'publish', 'draft', 'future', 'private', 'trash' ),
+        'posts_per_page' => 30, // Let's solve 30 at a time. Don't want to overstress the system.
+        'meta_query'     => array(
+          'relation' => 'OR',
+          array(
+            'key'     => '_price',
+            'compare' => 'NOT EXISTS',
+          ),
+          array(
+            'key'     => '_price',
+            'value'   => '',
+            'compare' => '=',
+          ),
+        ),
+      )
+    );
+
+    foreach ( $faulty_products as $product_id ) {
+      $product = \wc_get_product( $product_id );
+      if ( $product && Product\Types\Set::SLUG === $product->get_type() ) {
+        Product\Types\Set::sync( $product );
+      }
+    }
+  }
+
 }

@@ -94,6 +94,9 @@ add_action( 'admin_notices', array( PadelPoint\Admin\Extensions::class, 'show_no
 $callback = array( PadelPoint\Admin\Extensions::class, 'handle_manual_import_request' );
 add_action( 'admin_action_' . PadelPoint\Constants::ACTION_SLUG_MANUAL_IMPORT, $callback );
 
+$callback = array( PadelPoint\Admin\Extensions::class, 'handle_sync_sets_request' );
+add_action( 'admin_action_' . PadelPoint\Constants::ACTION_SLUG_SYNCRONIZE_SETS, $callback );
+
 $callback = array( PadelPoint\Product\Types\Article::class, 'remove_thumbnail_placeholder_html' );
 \add_filter( 'woocommerce_single_product_image_thumbnail_html', $callback );
 

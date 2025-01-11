@@ -7,7 +7,21 @@
 
 declare ( strict_types = 1 );
 
-use PadelPoint\Constants; ?>
+use PadelPoint\Constants;
+
+$import_already_running = false;
+
+$import_stats = \get_option( Constants::SETTING_FIELD_IMPORT_STATS, '' );
+$import_stats = ! empty( $import_stats ) ? $import_stats : array();
+if ( ! empty( $import_stats ) ) {
+  if (
+    $import_stats['articles'] < $import_stats['articles_count'] ||
+    $import_stats['sets'] < $import_stats['sets_count']
+  ) {
+    $import_already_running = true;
+  }
+}
+?>
 
 <div class="wrap">
   <h1><?php esc_html_e( 'PadelPoint Settings', 'padelpoint-integration' ); ?></h1>
@@ -26,45 +40,39 @@ use PadelPoint\Constants; ?>
     \submit_button(); ?>
   </form>
 
-  <h2><?php esc_html_e( 'Manual Catalog Import', 'padelpoint-integration' ); ?></h2>
-  <p>
-    <?php
-    esc_html_e(
-      // phpcs:ignore Generic.Files.LineLength.MaxExceeded
-      'For troubleshooting purposes or when automatic updates fail to fetch recent changes, you may need to manually initiate the catalog import process.',
-      'padelpoint-integration'
-    ); ?>
-  </p>
+  <h2><?php esc_html_e( 'Tools' ); ?></h2>
 
-  <?php
-  $import_already_running = false;
-
-  $import_stats = \get_option( Constants::SETTING_FIELD_IMPORT_STATS, '' );
-  $import_stats = ! empty( $import_stats ) ? $import_stats : array();
-  if ( ! empty( $import_stats ) ) {
-    if (
-      $import_stats['articles'] < $import_stats['articles_count'] ||
-      $import_stats['sets'] < $import_stats['sets_count']
-    ) {
-      $import_already_running = true;
-    }
-  }
-
-  if ( $import_already_running ) : ?>
-    <p>
-      <?php
-      esc_html_e(
-        'An import is already in the process, can not initiate a manual import right now.',
-        'padelpoint-integration'
-      ); ?>
-    </p>
+  <?php if ( $import_already_running ) : ?>
+    <div style="display: flex; align-items: center; justify-content: space-between">
   <?php else : ?>
     <form
       method="post"
       onsubmit="maybe_warn_about_categories_import(event)"
       action="<?php echo \esc_url( \admin_url( 'admin.php' ) ); ?>"
+      style="display: flex; align-items: center; justify-content: space-between"
     >
+  <?php endif; ?>
+
+  <div>
+    <h4><?php esc_html_e( 'Manual Catalog Import', 'padelpoint-integration' ); ?></h4>
+    <p>
       <?php
+      esc_html_e(
+        // phpcs:ignore Generic.Files.LineLength.MaxExceeded
+        'For troubleshooting purposes or when automatic updates fail to fetch recent changes, you may need to manually initiate the catalog import process.',
+        'padelpoint-integration'
+      ); ?>
+    </p>
+
+    <?php if ( $import_already_running ) : ?>
+      <p>
+        <?php
+        esc_html_e(
+          'An import is already in the process, can not initiate a manual import right now.',
+          'padelpoint-integration'
+        ); ?>
+      </p>
+    <?php else : // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentAfterOpen
       $action = Constants::ACTION_SLUG_MANUAL_IMPORT;
       echo '<input type="hidden" name="action" value="' . esc_attr( $action ) . '" />';
       \wp_nonce_field( $action );
@@ -87,8 +95,24 @@ use PadelPoint\Constants; ?>
           )
         )
       );
+    endif; ?>
+  </div>
 
-      \submit_button( __( 'Run Import', 'padelpoint-integration' ), 'secondary' ); ?>
+  <div>
+    <?php
+    \submit_button(
+      __( 'Run Import', 'padelpoint-integration' ),
+      'secondary',
+      'submit',
+      true,
+      $import_already_running ? array( 'disabled' => true ) : array()
+    );
+    ?>
+  </div>
+
+  <?php if ( $import_already_running ) : ?>
+    </div>
+  <?php else : ?>
     </form>
     <script>
       function maybe_warn_about_categories_import( event ) {
@@ -113,4 +137,62 @@ use PadelPoint\Constants; ?>
       }
     </script>
   <?php endif; ?>
+
+  <hr/>
+
+  <?php if ( $import_already_running ) : ?>
+    <div style="display: flex; align-items: center; justify-content: space-between">
+  <?php else : ?>
+    <form
+      method="post"
+      onsubmit="maybe_warn_about_categories_import(event)"
+      action="<?php echo \esc_url( \admin_url( 'admin.php' ) ); ?>"
+      style="display: flex; align-items: center; justify-content: space-between"
+    >
+  <?php endif; ?>
+
+  <div>
+    <h4><?php esc_html_e( 'Synchronize PadelPoint Sets', 'padelpoint-integration' ); ?></h4>
+    <p>
+      <?php
+      esc_html_e(
+        'In the event when the Sets show "Read More" button on UI, sync them to fix the issue.',
+        'padelpoint-integration'
+      ); ?>
+    </p>
+
+    <?php if ( $import_already_running ) : ?>
+      <p>
+        <?php
+        esc_html_e(
+          'An import is already in the process, please wait for it to finish.',
+          'padelpoint-integration'
+        ); ?>
+      </p>
+    <?php else : // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentAfterOpen
+      $action = Constants::ACTION_SLUG_SYNCRONIZE_SETS;
+      echo '<input type="hidden" name="action" value="' . esc_attr( $action ) . '" />';
+      \wp_nonce_field( $action );
+    endif; ?>
+  </div>
+
+  <div>
+    <?php
+    \submit_button(
+      __( 'Sync Sets', 'padelpoint-integration' ),
+      'secondary',
+      'submit',
+      true,
+      $import_already_running ? array( 'disabled' => true ) : array()
+    );
+    ?>
+  </div>
+
+  <?php if ( $import_already_running ) : ?>
+    </div>
+  <?php else : ?>
+    </form>
+  <?php endif; ?>
+
+  <hr/>
 </div>

@@ -250,4 +250,23 @@ class Extensions {
     <?php
   }
 
+  /**
+   * Handle admin_ajax request for syncing sets.
+   */
+  public static function handle_sync_sets_request(): void {
+    if (
+      ! isset( $_REQUEST['_wpnonce'] ) || empty( $_REQUEST['_wpnonce'] ) ||
+      ! \wp_verify_nonce(
+        \sanitize_key( \wp_unslash( $_REQUEST['_wpnonce'] ) ),
+        Constants::ACTION_SLUG_SYNCRONIZE_SETS
+      )
+    ) {
+      return;
+    }
+
+    \PadelPoint\Job::sync_faulty_sets();
+    \wp_safe_redirect( \wp_get_referer() );
+    exit();
+  }
+
 }
