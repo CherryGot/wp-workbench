@@ -1,5 +1,13 @@
 # Changelog
 
+### 1.6.0
+
+> 11 January 2025
+
+- Feature: adds mechanism to sync faulty set import
+- Fix: generate slugs after decoding title/name
+- Fix: sync set after all variants are imported
+
 ### 1.5.2
 
 > 28 December 2024
