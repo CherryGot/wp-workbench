@@ -282,4 +282,24 @@ class Article extends \WC_Product_Simple {
     }
   }
 
+  /**
+   * Synchronizes the price of the product based on the sale or regular price.
+   *
+   * @param \WC_Product|int $product The product to sync.
+   *
+   * phpcs:disable SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+   */
+  public static function sync( $product ): void {
+    // phpcs:enable SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+    if ( ! ( $product instanceof self ) ) {
+      return;
+    }
+
+    $regular_price = (float) $product->get_regular_price();
+    $sale_price    = (float) $product->get_sale_price();
+    $price         = $sale_price && $sale_price > 0.0 ? $sale_price : $regular_price;
+
+    \update_post_meta( $product->get_id(), '_price', $price );
+  }
+
 }

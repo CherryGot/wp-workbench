@@ -26,6 +26,6 @@ class Constants {
 
   public const ACTION_SLUG_MANUAL_IMPORT = 'init-catalog-fetch';
 
-  public const ACTION_SLUG_SYNCRONIZE_SETS = 'sync-sets';
+  public const ACTION_SLUG_SYNCRONIZE_PRODUCTS = 'sync-products';
 
 }

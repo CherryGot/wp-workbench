@@ -258,13 +258,13 @@ class Extensions {
       ! isset( $_REQUEST['_wpnonce'] ) || empty( $_REQUEST['_wpnonce'] ) ||
       ! \wp_verify_nonce(
         \sanitize_key( \wp_unslash( $_REQUEST['_wpnonce'] ) ),
-        Constants::ACTION_SLUG_SYNCRONIZE_SETS
+        Constants::ACTION_SLUG_SYNCRONIZE_PRODUCTS
       )
     ) {
       return;
     }
 
-    \PadelPoint\Job::sync_faulty_sets();
+    \PadelPoint\Job::sync_faulty_products();
     \wp_safe_redirect( \wp_get_referer() );
     exit();
   }

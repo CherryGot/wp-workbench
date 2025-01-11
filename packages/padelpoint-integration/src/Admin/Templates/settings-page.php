@@ -152,11 +152,12 @@ if ( ! empty( $import_stats ) ) {
   <?php endif; ?>
 
   <div>
-    <h4><?php esc_html_e( 'Synchronize PadelPoint Sets', 'padelpoint-integration' ); ?></h4>
+    <h4><?php esc_html_e( 'Synchronize Products', 'padelpoint-integration' ); ?></h4>
     <p>
       <?php
       esc_html_e(
-        'In the event when the Sets show "Read More" button on UI, sync them to fix the issue.',
+        // phpcs:ignore Generic.Files.LineLength.MaxExceeded
+        'If the products display a "Read More" button on the UI, it may indicate a pricing issue during import. Click the button to resolve it.',
         'padelpoint-integration'
       ); ?>
     </p>
@@ -170,7 +171,7 @@ if ( ! empty( $import_stats ) ) {
         ); ?>
       </p>
     <?php else : // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentAfterOpen
-      $action = Constants::ACTION_SLUG_SYNCRONIZE_SETS;
+      $action = Constants::ACTION_SLUG_SYNCRONIZE_PRODUCTS;
       echo '<input type="hidden" name="action" value="' . esc_attr( $action ) . '" />';
       \wp_nonce_field( $action );
     endif; ?>
@@ -179,7 +180,7 @@ if ( ! empty( $import_stats ) ) {
   <div>
     <?php
     \submit_button(
-      __( 'Sync Sets', 'padelpoint-integration' ),
+      __( 'Sync Products', 'padelpoint-integration' ),
       'secondary',
       'submit',
       true,

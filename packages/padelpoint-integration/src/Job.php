@@ -481,15 +481,15 @@ class Job {
   }
 
   /**
-   * Synchronize faulty sets that couldn't sync during import for some reason.
+   * Synchronize faulty products that couldn't sync during import for some reason.
    */
-  public static function sync_faulty_sets(): void {
+  public static function sync_faulty_products(): void {
     $faulty_products = \get_posts(
       array(
         'fields'         => 'ids',
         'post_type'      => 'product',
         'post_status'    => array( 'publish', 'draft', 'future', 'private', 'trash' ),
-        'posts_per_page' => 30, // Let's solve 30 at a time. Don't want to overstress the system.
+        'posts_per_page' => 100, // Let's solve 100 at a time. Don't want to overstress the system.
         'meta_query'     => array(
           'relation' => 'OR',
           array(
@@ -507,8 +507,16 @@ class Job {
 
     foreach ( $faulty_products as $product_id ) {
       $product = \wc_get_product( $product_id );
-      if ( $product && Product\Types\Set::SLUG === $product->get_type() ) {
+      if ( empty( $product ) ) {
+        continue;
+      }
+
+      if ( Product\Types\Set::SLUG === $product->get_type() ) {
         Product\Types\Set::sync( $product );
+      }
+
+      if ( Product\Types\Article::SLUG === $product->get_type() ) {
+        Product\Types\Article::sync( $product );
       }
     }
   }
