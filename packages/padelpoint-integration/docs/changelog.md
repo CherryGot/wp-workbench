@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.7.0
+
+> 11 January 2025
+
+- Feature: sync articles along with sets
+
 ### 1.6.0
 
 > 11 January 2025
