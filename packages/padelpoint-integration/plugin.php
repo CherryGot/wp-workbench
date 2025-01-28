@@ -81,7 +81,7 @@ $admin_init_handler = function (): void {
 };
 add_action( 'admin_init', $admin_init_handler );
 
-add_action( 'woocommerce_payment_complete', array( PadelPoint\Job::class, 'process_order' ) );
+add_action( 'woocommerce_order_status_completed', array( PadelPoint\Job::class, 'process_order' ) );
 
 $callback = array( PadelPoint\Admin\Extensions::class, 'add_update_availability_button' );
 add_action( 'post_submitbox_minor_actions', $callback );
