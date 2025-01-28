@@ -1,5 +1,12 @@
 # Changelog
 
+### 1.8.0
+
+> 28 January 2025
+
+- Fix: forward order at end of order lifecycle
+- Feature: default status of import set to publish
+
 ### 1.7.0
 
 > 11 January 2025
