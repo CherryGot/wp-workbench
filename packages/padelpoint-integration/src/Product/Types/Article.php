@@ -135,7 +135,7 @@ class Article extends \WC_Product_Simple {
           'post_title'  => $title,
           'post_name'   => \sanitize_title( $title ),
           'post_type'   => 'product',
-          'post_status' => 'draft',
+          'post_status' => 'publish',
           'meta_input'  => array_merge( $meta_input, array( '_sku' => $articulo['CODIGO'] ) ),
         )
       );

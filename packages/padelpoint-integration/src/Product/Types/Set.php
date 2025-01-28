@@ -92,7 +92,7 @@ class Set extends \WC_Product_Variable {
 
     if ( empty( $product ) ) {
       $product = new static();
-      $product->set_status( 'draft' );
+      $product->set_status( 'publish' );
     }
     else {
       $product = new static( $product[0] );
