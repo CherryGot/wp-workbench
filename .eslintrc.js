@@ -14,6 +14,7 @@ module.exports = {
     'indent': [ 'error', 2 ],
     'no-multi-spaces': [ 'error', {
       exceptions: {
+        'AssignmentExpression': true,
         'VariableDeclarator': true,
         'ImportDeclaration': true,
         'Property': true,
@@ -25,6 +26,9 @@ module.exports = {
     } ],
     'import/no-extraneous-dependencies': [ 'error', {
       'packageDir': '.'
+    } ],
+    "key-spacing": [ "error", {
+      "align": "colon"
     } ],
   },
 }

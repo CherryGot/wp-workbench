@@ -10,6 +10,7 @@
 
   <!-- Exclude the directories we know we don't want to check -->
   <exclude-pattern>/wordpress/</exclude-pattern>
+  <exclude-pattern>/dist/*.asset.php</exclude-pattern>
   <exclude-pattern>/packages/*/(vendor|docs|help)/*</exclude-pattern>
 
   <!-- Show colors in console -->
