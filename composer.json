@@ -25,7 +25,9 @@
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
     "phpunit/phpunit": "^9.5",
     "roave/security-advisories": "dev-latest",
-    "johnpbloch/wordpress": "6.4"
+    "johnpbloch/wordpress": "6.4",
+    "wp-phpunit/wp-phpunit": "6.4",
+    "yoast/phpunit-polyfills": "^4.0"
   },
   "scripts": {
     "lint": "phpcs --error-severity=1 --warning-severity=1",
