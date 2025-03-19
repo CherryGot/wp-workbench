@@ -106,4 +106,14 @@
       <property name="linesCountBeforeClosingBrace" value="1"/>
     </properties>
   </rule>
+
+  <!-- No need for short description for tests -->
+  <rule ref="Generic.Commenting.DocComment.MissingShort">
+    <exclude-pattern>*/tests/*Test.php</exclude-pattern>
+  </rule>
+
+  <!-- No need for to force parameter tags for tests -->
+  <rule ref="Squiz.Commenting.FunctionComment.MissingParamTag">
+    <exclude-pattern>*/tests/*Test.php</exclude-pattern>
+  </rule>
 </ruleset>
