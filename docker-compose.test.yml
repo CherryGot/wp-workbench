@@ -1,0 +1,13 @@
+services:
+  test_database:
+    image: mariadb:10.10
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    volumes:
+      - ./volumes/test_database:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: 'test'
+      MYSQL_USER: 'test'
+      MYSQL_PASSWORD: 'test'
