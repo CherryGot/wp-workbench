@@ -43,11 +43,6 @@
       "composer/installers": true
     }
   },
-  "autoload-dev": {
-    "psr-4": {
-      "Workbench\\Tests\\GenZAdmin\\": "packages/gutenberg/tests/"
-    }
-  },
   "extra": {
     "wordpress-install-dir": "wordpress",
     "installer-paths": {
