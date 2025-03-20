@@ -6,7 +6,9 @@ if ! [ -n "$GITHUB_ACTIONS" ]; then
 
   # Wait for the database to be ready
   echo "Waiting for MySQL to be ready..."
-  until docker exec $(docker compose -f ./docker-compose.test.yml ps -q test_database) mysqladmin ping --silent; do
+
+  command=$(docker compose -f ./docker-compose.test.yml ps -q test_database)
+  until docker exec "$command" mysqladmin ping --silent; do
     sleep 1
   done
 fi
