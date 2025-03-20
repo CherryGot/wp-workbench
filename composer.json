@@ -27,7 +27,8 @@
     "roave/security-advisories": "dev-latest",
     "johnpbloch/wordpress": "6.4",
     "wp-phpunit/wp-phpunit": "6.4",
-    "yoast/phpunit-polyfills": "^4.0"
+    "yoast/phpunit-polyfills": "^4.0",
+    "mikey179/vfsstream": "^1.6"
   },
   "scripts": {
     "lint": "phpcs --error-severity=1 --warning-severity=1",
